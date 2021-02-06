@@ -1,0 +1,32 @@
+.login {
+	background-color: #121212;
+	height: 100vh;
+	overflow: auto;
+}
+
+.loginElements {
+	margin-top: 25vh;
+	display: grid;
+	place-items: center;
+	background-color: #121212;
+	gap: 2.5rem;
+}
+
+.loginElements > a {
+	padding: 1rem;
+	background-color: #1db954;
+	font-weight: 700;
+	color: white;
+	border-radius: 100px;
+	text-decoration: none;
+}
+
+.spotifyLoginLogo {
+	height: 250px;
+	vertical-align: middle;
+}
+
+.loginElements > p {
+	color: white;
+	font-size: 2rem;
+}
