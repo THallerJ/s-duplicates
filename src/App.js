@@ -1,18 +1,20 @@
 import './App.css';
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Login from './components/Login';
-import { getAccessToken } from './spotify/authentication';
+import Dashboard from './components/Dashboard';
+import PrivateRoute from './components/PrivateRoute';
+import { TokenProvider } from './context/TokenContext';
 
 function App() {
-	useEffect(() => {
-		const token = getAccessToken();
-		if (token) {
-			/* save the token */
-		}
-	}, []);
 	return (
 		<div className="App">
-			<Login />
+			<TokenProvider>
+				<Router>
+					<Route path="/login" component={Login} />
+					<PrivateRoute exact path="/" component={Dashboard} />
+				</Router>
+			</TokenProvider>
 		</div>
 	);
 }
