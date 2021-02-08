@@ -1,14 +1,18 @@
 import React, { useContext } from 'react';
 import { TokenContext } from '../context/TokenContext';
+import Sidebar from './Sidebar';
+import Body from './Body';
+import '../style/Dashboard.css';
 
-const Home = () => {
-	const [user, setUser] = useContext(TokenContext);
+const Dashboard = () => {
+	const [token] = useContext(TokenContext);
 
 	return (
-		<div>
-			<p>{user}</p>
+		<div className="dashboard">
+			<Sidebar />
+			<Body />
 		</div>
 	);
 };
 
-export default Home;
+export default Dashboard;

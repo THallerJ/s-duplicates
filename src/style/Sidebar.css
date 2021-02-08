@@ -1,0 +1,11 @@
+.sidebar {
+	background-color: black;
+	flex: 0.12;
+	min-width: 200px;
+}
+
+.sidebarLogo {
+	max-width: 55%;
+	height: auto;
+	margin: 10%;
+}

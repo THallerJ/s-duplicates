@@ -5,11 +5,12 @@ import { getAccessToken } from '../spotify/authentication';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
 	const [doRender, setDoRender] = useState(false);
-	const [user, setUser] = useContext(TokenContext);
+	const [token, setToken] = useContext(TokenContext);
+
 	useEffect(() => {
-		if (!user) {
+		if (!token) {
 			const token = getAccessToken();
-			setUser(token);
+			setToken(token);
 			setDoRender(true);
 		}
 	}, []);
@@ -19,7 +20,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 			{...rest}
 			render={(props) => {
 				if (doRender) {
-					return user ? <Component {...props} /> : <Redirect to="/login" />;
+					return token ? <Component {...props} /> : <Redirect to="/login" />;
 				}
 			}}
 		></Route>
