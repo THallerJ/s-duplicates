@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 const clientId = '531cd6244e3a4221af493a844f8f7a96';
 
 const redirectUri = 'http://localhost:3000';
@@ -22,4 +24,21 @@ export const getAccessToken = () => {
 		window.location.hash = '';
 		return token;
 	}
+};
+
+export const getUser = async (token) => {
+	const user = await axios
+		.get('https://api.spotify.com/v1/me', {
+			headers: {
+				Authorization: 'Bearer ' + token,
+			},
+		})
+		.then((response) => {
+			return response;
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+
+	return user;
 };
