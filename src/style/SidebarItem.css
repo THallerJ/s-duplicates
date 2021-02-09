@@ -1,0 +1,33 @@
+.sidebarItem {
+	display: flex;
+	color: #bfbfbf;
+	height: 40px;
+	cursor: pointer;
+	transition: 50ms color ease-in;
+	padding-left: 10%;
+	padding-top: 5%;
+	font-size: 0.9rem;
+}
+
+.sidebarItem:hover {
+	color: white;
+}
+
+.sidebarItemImg {
+	display: flex;
+}
+
+.sidebarItemImgTxt {
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+.sidebarItemImg {
+	height: 40px;
+	width: auto;
+	margin-bottom: 20px;
+}
+
+.sidebarItemIcon {
+	padding-right: 5%;
+}
