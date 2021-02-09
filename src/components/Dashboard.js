@@ -1,16 +1,16 @@
-import React, { useContext, useEffect } from 'react';
-import { TokenContext } from '../context/TokenContext';
+import React, { useEffect } from 'react';
+import { GetUserContext } from '../context/UserContext';
 import Sidebar from './Sidebar';
 import Body from './Body';
 import '../style/Dashboard.css';
 import { getUser } from '../spotify/authentication';
 
 const Dashboard = () => {
-	const [token] = useContext(TokenContext);
+	const { token, setUser } = GetUserContext();
 
 	useEffect(() => {
 		getUser(token).then((resp) => {
-			console.log(resp.data.display_name);
+			setUser(resp.data.display_name);
 		});
 	}, []);
 	return (
