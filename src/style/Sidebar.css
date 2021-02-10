@@ -1,17 +1,15 @@
 .sidebar {
 	background-color: black;
-	flex: 0.12;
+	flex: 0.15;
 	min-width: 200px;
+	height: 100vh;
+	overflow-x: auto;
 }
 
 .sidebarLogo {
 	max-width: 55%;
 	height: auto;
 	margin: 10%;
-}
-
-.sidebarItems {
-	margin-left: 5%;
 }
 
 .sidebar > hr {
@@ -23,6 +21,6 @@
 .sidebarTitle {
 	margin-left: 15px;
 	padding: 5px;
-	font-size: 12px;
+	font-size: 0.75rem;
 	color: #bfbfbf;
 }

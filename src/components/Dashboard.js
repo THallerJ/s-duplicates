@@ -7,7 +7,7 @@ import { getUser } from '../spotify/authentication';
 import { getPlaylists } from '../spotify/playlists';
 
 const Dashboard = () => {
-	const { token, user, setUser } = GetUserContext();
+	const { token, user, setUser, setPlaylists } = GetUserContext();
 	const isInitialMount = useRef(true);
 
 	useEffect(() => {
@@ -21,7 +21,7 @@ const Dashboard = () => {
 			isInitialMount.current = false;
 		} else {
 			getPlaylists(token, user).then((resp) => {
-				console.log(resp);
+				setPlaylists(resp.data);
 			});
 		}
 	}, [user]);

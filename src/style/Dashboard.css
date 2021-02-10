@@ -1,4 +1,6 @@
 .dashboard {
 	display: flex;
 	height: 100vh;
+	overflow: auto;
+	flex-wrap: wrap;
 }

@@ -1,9 +1,9 @@
 import React from 'react';
 import '../style/SidebarItem.css';
 
-const SidebarItem = ({ title, imgSrc, Icon }) => {
+const SidebarItem = ({ title, imgSrc, Icon, onClick }) => {
 	return (
-		<div className="sidebarItem">
+		<div className="sidebarItem" onClick={onClick}>
 			{Icon && <Icon className="sidebarItemIcon" />}
 			{imgSrc ? (
 				<div className="sidebarItemImg">
