@@ -12,7 +12,7 @@ const scopes = [
 	'playlist-read-private',
 ];
 
-const showDialog = 'false';
+const showDialog = 'true';
 
 export const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
 	' '

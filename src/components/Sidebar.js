@@ -4,24 +4,32 @@ import SpotifyLogo from '../images/spotify_white_logo.png';
 import SidebarItem from './SidebarItem';
 import LibraryMusicIcon from '@material-ui/icons/LibraryMusic';
 import { GetUserContext } from '../context/UserContext';
+import { getPlaylistTracks } from '../spotify/playlists';
+import { getSavedTracks } from '../spotify/tracks';
 
 const Sidebar = () => {
-	const { playlists } = GetUserContext();
+	const { token, playlists } = GetUserContext();
 
 	useEffect(() => {
 		console.log(playlists);
 	}, [playlists]);
 
-	const onClickPlaylist = (id) => {
-		console.log(id);
+	const onClickLibrary = () => {
+		console.log(getSavedTracks(token).then((resp) => resp));
 	};
 
-	/* look up how to pass parameer to function passed ti component*/
+	const onClickPlaylist = (id) => {
+		console.log(getPlaylistTracks(token, id).then((resp) => resp));
+	};
 
 	return (
 		<div className="sidebar">
 			<img className="sidebarLogo" src={SpotifyLogo} alt="" />
-			<SidebarItem title="Library" Icon={LibraryMusicIcon} />
+			<SidebarItem
+				title="Library"
+				onClick={onClickLibrary}
+				Icon={LibraryMusicIcon}
+			/>
 			<strong className="sidebarTitle">PLAYLISTS</strong>
 			<hr />
 			<div className="sidebarItems">
