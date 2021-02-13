@@ -11,7 +11,7 @@ const Sidebar = () => {
 	const { token, playlists } = GetUserContext();
 
 	const onClickLibrary = () => {
-		getSavedTracks(token).then((resp) => console.log(resp));
+		getSavedTracks(token, 0).then((resp) => console.log(resp));
 	};
 
 	const onClickPlaylist = (id) => {
