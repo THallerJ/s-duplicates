@@ -11,11 +11,11 @@ const Sidebar = () => {
 	const { token, playlists } = GetUserContext();
 
 	const onClickLibrary = () => {
-		getSavedTracks(token, 0).then((resp) => console.log(resp));
+		getSavedTracks(token).then((resp) => console.log(resp));
 	};
 
 	const onClickPlaylist = (id) => {
-		console.log(getPlaylistTracks(token, id, 0).then((resp) => resp));
+		console.log(getPlaylistTracks(token, id).then((resp) => resp));
 	};
 
 	return (
