@@ -1,20 +1,33 @@
 import axios from 'axios';
 
-export const getPlaylists = async (token, userName) => {
-	const user = await axios
+export const getPlaylists = async (token, userName, offset) => {
+	const limit = 50;
+
+	const playlists = await axios
 		.get(`https://api.spotify.com/v1/users/${userName}/playlists`, {
+			params: {
+				offset: offset,
+				limit: limit,
+			},
+
 			headers: {
 				Authorization: 'Bearer ' + token,
 			},
 		})
-		.then((response) => {
-			return response;
+		.then(async (response) => {
+			if (response.data.next) {
+				return response.data.items.concat(
+					await getPlaylists(token, userName, offset + limit)
+				);
+			} else {
+				return response.data.items;
+			}
 		})
 		.catch((err) => {
 			console.log(err);
 		});
 
-	return user;
+	return playlists;
 };
 
 export const getPlaylistTracks = async (token, playlistId, offset) => {

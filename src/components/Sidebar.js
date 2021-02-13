@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import '../style/Sidebar.css';
 import SpotifyLogo from '../images/spotify_white_logo.png';
 import SidebarItem from './SidebarItem';
@@ -9,10 +9,6 @@ import { getSavedTracks } from '../spotify/tracks';
 
 const Sidebar = () => {
 	const { token, playlists } = GetUserContext();
-
-	useEffect(() => {
-		console.log(playlists);
-	}, [playlists]);
 
 	const onClickLibrary = () => {
 		getSavedTracks(token).then((resp) => console.log(resp));
@@ -33,7 +29,7 @@ const Sidebar = () => {
 			<strong className="sidebarTitle">PLAYLISTS</strong>
 			<hr />
 			<div className="sidebarItems">
-				{playlists?.items?.map((playlist) => (
+				{playlists?.map((playlist) => (
 					<SidebarItem
 						key={playlist.id}
 						className="test"

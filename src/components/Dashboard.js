@@ -20,8 +20,8 @@ const Dashboard = () => {
 		if (isInitialMount.current) {
 			isInitialMount.current = false;
 		} else {
-			getPlaylists(token, user).then((resp) => {
-				setPlaylists(resp.data);
+			getPlaylists(token, user, 0).then((resp) => {
+				setPlaylists(resp);
 			});
 		}
 	}, [user]);
