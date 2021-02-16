@@ -3,7 +3,7 @@
 	flex: 0.15;
 	min-width: 200px;
 	height: 100vh;
-	overflow-x: auto;
+	overflow: auto;
 }
 
 .sidebarLogo {

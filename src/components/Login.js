@@ -1,7 +1,7 @@
-import React from 'react';
-import '../style/Login.css';
-import SpotifyLogo from '../images/spotify_green_logo.png';
-import { authUrl } from '../spotify/authentication';
+import React from "react";
+import "../style/Login.css";
+import SpotifyLogo from "../images/spotify_green_logo.png";
+import { authUrl } from "../spotify/authentication";
 
 const Login = () => {
 	return (
