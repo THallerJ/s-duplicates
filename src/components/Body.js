@@ -1,15 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../style/Body.css';
 import Header from './Header';
 import PlaylistHeader from './PlaylistHeader';
 import ReactSpinner from 'react-bootstrap-spinner';
 
 const Body = () => {
+	const [loading, setLoading] = useState(true);
+
 	return (
 		<div className="body">
-			<Header />
-			<PlaylistHeader className="playlistHeader" />
-			<ReactSpinner type="border" color="primary" size="5" />
+			{loading ? (
+				<ReactSpinner
+					className="loadingSpinner"
+					type="border"
+					color="secondary"
+					size="5"
+				/>
+			) : (
+				<div>
+					<Header />
+					<PlaylistHeader className="playlistHeader" />
+				</div>
+			)}
 		</div>
 	);
 };
