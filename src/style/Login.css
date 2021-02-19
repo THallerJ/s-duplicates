@@ -18,7 +18,13 @@
 	font-weight: 700;
 	color: white;
 	border-radius: 100px;
+
 	text-decoration: none;
+}
+
+.loginElements > a:hover {
+	color: black;
+	transition: 100ms color ease-in;
 }
 
 .spotifyLoginLogo {

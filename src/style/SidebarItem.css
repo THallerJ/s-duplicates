@@ -2,7 +2,7 @@
 	display: flex;
 	color: #bfbfbf;
 	cursor: pointer;
-	transition: 50ms color ease-in;
+	transition: 100ms color ease-in;
 	padding-left: 7%;
 	padding-bottom: 5%;
 	font-size: 0.8rem;
@@ -25,11 +25,18 @@
 .sidebarItemImgTxt {
 	margin-top: 10px;
 	margin-left: 10px;
+	font-weight: 700;
+	font-size: 1rem;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
 
-.sidebarItemIcon {
-	padding-right: 5%;
+.sidebarItemTxt {
+	margin-left: 10px;
+	font-weight: 700;
+	font-size: 1rem;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }

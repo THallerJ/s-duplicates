@@ -10,7 +10,6 @@
 .playlistImg {
 	width: 100px;
 	height: 100px;
-	padding-right: 1.5%;
 }
 
 .playlistTitle {
@@ -21,4 +20,8 @@
 .songCount {
 	color: #bfbfbf;
 	font-size: 0.75rem;
+}
+
+.playlistHeaderItems {
+	padding-left: 1.5%;
 }
