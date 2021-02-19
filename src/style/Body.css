@@ -2,8 +2,12 @@
 	background: linear-gradient(#2a2a2a 50%, black);
 	flex: 0.85;
 	height: 100vh;
-
 	overflow: auto;
+}
+
+.center {
+	display: grid;
+	place-items: center;
 }
 
 .loadingSpinner {

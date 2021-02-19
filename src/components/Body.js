@@ -8,7 +8,7 @@ const Body = () => {
 	const [loading, setLoading] = useState(true);
 
 	return (
-		<div className="body">
+		<div className={`body ${loading ? 'center' : ''}`}>
 			{loading ? (
 				<ReactSpinner
 					className="loadingSpinner"
