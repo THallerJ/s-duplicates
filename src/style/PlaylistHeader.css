@@ -1,0 +1,24 @@
+.playlistHeader {
+	display: flex;
+}
+
+.playlistTitle {
+	color: white;
+	font-size: 3rem;
+}
+
+.playlistImg {
+	width: 100px;
+	height: 100px;
+	padding-right: 1.5%;
+}
+
+.playlistTitle {
+	color: white;
+	font-size: 3rem;
+}
+
+.songCount {
+	color: #bfbfbf;
+	font-size: 0.75rem;
+}
