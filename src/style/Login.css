@@ -22,7 +22,7 @@
 }
 
 .loginElements > a:hover {
-	color: black;
+	color: #121212;
 	transition: 100ms color ease-in;
 }
 

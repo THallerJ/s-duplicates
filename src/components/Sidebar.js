@@ -8,14 +8,15 @@ import { getPlaylistTracks } from '../spotify/playlists';
 import { getSavedTracks } from '../spotify/tracks';
 
 const Sidebar = () => {
-	const { token, playlists } = GetUserContext();
+	const { token, playlists, currPlaylist, setCurrPlaylist } = GetUserContext();
 
 	const onClickLibrary = () => {
 		getSavedTracks(token).then((resp) => console.log(resp));
 	};
 
-	const onClickPlaylist = (id) => {
-		console.log(getPlaylistTracks(token, id).then((resp) => resp));
+	const onClickPlaylist = (playlist) => {
+		setCurrPlaylist(playlist);
+		/*console.log(getPlaylistTracks(token, id).then((resp) => resp)); */
 	};
 
 	return (
@@ -33,7 +34,7 @@ const Sidebar = () => {
 					<SidebarItem
 						key={playlist.id}
 						className="test"
-						onClick={() => onClickPlaylist(playlist.id)}
+						onClick={() => onClickPlaylist(playlist)}
 						title={playlist.name}
 						imgSrc={playlist.images[0].url}
 					/>
