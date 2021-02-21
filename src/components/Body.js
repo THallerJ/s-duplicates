@@ -31,6 +31,10 @@ const Body = () => {
 							imgSrc={currPlaylist.images[0].url}
 						/>
 					)}
+
+					<div className="center">
+						<button className="button center">Find Duplicates</button>
+					</div>
 				</div>
 			)}
 		</div>

@@ -13,6 +13,21 @@
 .loadingSpinner {
 	margin-left: 100px;
 }
+
 .playlistHeader {
 	padding: 5%;
+}
+
+.button {
+	padding: 1rem;
+	border: #1db954;
+	color: white;
+	background-color: #1db954;
+	font-weight: 700;
+	border-radius: 100px;
+}
+
+.button:hover {
+	color: #2a2a2a;
+	transition: 100ms color ease-in;
 }
