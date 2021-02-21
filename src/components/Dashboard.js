@@ -14,7 +14,7 @@ const Dashboard = () => {
 		getUser(token).then((resp) => {
 			setUser(resp.data.display_name);
 		});
-	}, []);
+	}, [token]);
 
 	useEffect(() => {
 		if (isInitialMount.current) {

@@ -1,10 +1,10 @@
-import React from "react";
-import "../style/Header.css";
+import React from 'react';
+import '../style/Header.css';
 
-const Header = () => {
+const Header = ({ username }) => {
 	return (
 		<div className="header">
-			<p>username</p>
+			<p>{username}</p>
 		</div>
 	);
 };
