@@ -1,17 +1,13 @@
 import React from 'react';
 import '../style/PlaylistHeader.css';
 
-const PlaylistHeader = () => {
+const PlaylistHeader = ({ title, songCount, imgSrc }) => {
 	return (
 		<div className="playlistHeader">
-			<img
-				className="playlistImg"
-				src="https://i.scdn.co/image/ab67616d00001e02f337a21d945f44e802a1eb1d"
-				alt=""
-			/>
+			{imgSrc ? <img className="playlistImg" src={imgSrc} alt="" /> : 'hello'}
 			<div className="playlistHeaderItems">
-				<h1 className="playlistTitle">Playlist Title</h1>
-				<h4 className="songCount">150 songs</h4>
+				<h1 className="playlistTitle">{title}</h1>
+				<h4 className="songCount">{songCount}</h4>
 			</div>
 		</div>
 	);

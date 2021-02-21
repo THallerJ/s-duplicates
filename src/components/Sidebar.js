@@ -4,14 +4,13 @@ import SpotifyLogo from '../images/spotify_white_logo.png';
 import SidebarItem from './SidebarItem';
 import LibraryMusicIcon from '@material-ui/icons/LibraryMusic';
 import { GetUserContext } from '../context/UserContext';
-import { getPlaylistTracks } from '../spotify/playlists';
-import { getSavedTracks } from '../spotify/tracks';
 
 const Sidebar = () => {
-	const { token, playlists, currPlaylist, setCurrPlaylist } = GetUserContext();
+	const { playlists, setCurrPlaylist } = GetUserContext();
 
 	const onClickLibrary = () => {
-		getSavedTracks(token).then((resp) => console.log(resp));
+		setCurrPlaylist(null);
+		/*getSavedTracks(token).then((resp) => console.log(resp)); */
 	};
 
 	const onClickPlaylist = (playlist) => {

@@ -7,11 +7,7 @@ import ReactSpinner from 'react-bootstrap-spinner';
 
 const Body = () => {
 	const [loading, setLoading] = useState(false);
-	const { currPlaylist, setCurrPLaylist } = GetUserContext();
-
-	useEffect(() => {
-		console.log(currPlaylist);
-	}, [currPlaylist]);
+	const { currPlaylist } = GetUserContext();
 
 	return (
 		<div className={`body ${loading ? 'center' : ''}`}>
@@ -25,7 +21,16 @@ const Body = () => {
 			) : (
 				<div>
 					<Header />
-					<PlaylistHeader className="playlistHeader" />
+					{currPlaylist == null ? (
+						<PlaylistHeader className="playlistHeader" title="Library" />
+					) : (
+						<PlaylistHeader
+							className="playlistHeader"
+							title={currPlaylist.name}
+							songCount={currPlaylist.tracks.total + ' songs'}
+							imgSrc={currPlaylist.images[0].url}
+						/>
+					)}
 				</div>
 			)}
 		</div>
