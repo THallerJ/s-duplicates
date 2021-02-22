@@ -1,10 +1,12 @@
 .playlistHeader {
 	display: flex;
+	padding: 5%;
 }
 
 .playlistTitle {
 	color: white;
 	font-size: 3rem;
+	margin-top: 10px;
 }
 
 .playlistImg {

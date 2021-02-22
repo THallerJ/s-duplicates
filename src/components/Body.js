@@ -22,7 +22,11 @@ const Body = () => {
 				<div>
 					<Header username={user ? user : ''} />
 					{currPlaylist == null ? (
-						<PlaylistHeader className="playlistHeader" title="Library" />
+						<PlaylistHeader
+							className="playlistHeader"
+							title="Library"
+							songCount=" "
+						/>
 					) : (
 						<PlaylistHeader
 							className="playlistHeader"
@@ -33,7 +37,7 @@ const Body = () => {
 					)}
 
 					<div className="center">
-						<button className="button center">Find Duplicates</button>
+						<button className="button">Find Duplicates</button>
 					</div>
 				</div>
 			)}
