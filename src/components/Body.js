@@ -4,10 +4,22 @@ import Header from './Header';
 import PlaylistHeader from './PlaylistHeader';
 import { GetUserContext } from '../context/UserContext';
 import ReactSpinner from 'react-bootstrap-spinner';
+import { getPlaylistTracks } from '../spotify/playlists';
+import { getSavedTracks } from '../spotify/tracks';
 
 const Body = () => {
 	const [loading, setLoading] = useState(false);
-	const { currPlaylist, user } = GetUserContext();
+	const { currPlaylist, user, token } = GetUserContext();
+
+	const onClick = () => {
+		if (currPlaylist) {
+			console.log(
+				getPlaylistTracks(token, currPlaylist.id).then((resp) => resp)
+			);
+		} else {
+			getSavedTracks(token).then((resp) => console.log(resp));
+		}
+	};
 
 	return (
 		<div className={`body ${loading ? 'center' : ''}`}>
@@ -37,7 +49,9 @@ const Body = () => {
 					)}
 
 					<div className="center">
-						<button className="button">Find Duplicates</button>
+						<button className="button" onClick={onClick}>
+							Find Duplicates
+						</button>
 					</div>
 				</div>
 			)}
