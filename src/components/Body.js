@@ -12,12 +12,18 @@ const Body = () => {
 	const { currPlaylist, user, token } = GetUserContext();
 
 	const onClick = () => {
+		setLoading(true);
+
 		if (currPlaylist) {
-			console.log(
-				getPlaylistTracks(token, currPlaylist.id).then((resp) => resp)
-			);
+			getPlaylistTracks(token, currPlaylist.id).then((resp) => {
+				console.log(resp);
+				setLoading(false);
+			});
 		} else {
-			getSavedTracks(token).then((resp) => console.log(resp));
+			getSavedTracks(token).then((resp) => {
+				console.log(resp);
+				setLoading(false);
+			});
 		}
 	};
 
