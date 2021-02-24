@@ -6,11 +6,9 @@
 }
 
 .center {
-	display: grid;
-	place-items: center;
-}
-.loadingSpinner {
-	margin-left: 100px;
+	position: absolute;
+	left: 50%;
+	top: 40%;
 }
 
 .playlistHeader {
@@ -24,9 +22,7 @@
 	background-color: #1db954;
 	font-weight: 700;
 	border-radius: 100px;
-	position: absolute;
-	left: 50%;
-	top: 40%;
+	white-space: nowrap;
 }
 
 .button:hover {

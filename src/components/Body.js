@@ -28,37 +28,36 @@ const Body = () => {
 	};
 
 	return (
-		<div className={`body ${loading ? 'center' : ''}`}>
-			{loading ? (
-				<ReactSpinner
-					className="loadingSpinner"
-					type="border"
-					color="secondary"
-					size="5"
+		<div className="body">
+			<Header username={user ? user : ''} />
+			{currPlaylist == null ? (
+				<PlaylistHeader
+					className="playlistHeader"
+					title="Library"
+					songCount=" "
 				/>
 			) : (
+				<PlaylistHeader
+					className="playlistHeader"
+					title={currPlaylist.name}
+					songCount={currPlaylist.tracks.total + ' songs'}
+					imgSrc={currPlaylist.images[0].url}
+				/>
+			)}
+			{loading ? (
+				<div className="center">
+					<ReactSpinner
+						className="center"
+						type="border"
+						color="secondary"
+						size="5"
+					/>
+				</div>
+			) : (
 				<div>
-					<Header username={user ? user : ''} />
-					{currPlaylist == null ? (
-						<PlaylistHeader
-							className="playlistHeader"
-							title="Library"
-							songCount=" "
-						/>
-					) : (
-						<PlaylistHeader
-							className="playlistHeader"
-							title={currPlaylist.name}
-							songCount={currPlaylist.tracks.total + ' songs'}
-							imgSrc={currPlaylist.images[0].url}
-						/>
-					)}
-
-					<div className="center">
-						<button className="button" onClick={onClick}>
-							Find Duplicates
-						</button>
-					</div>
+					<button className="button center" onClick={onClick}>
+						Find Duplicates
+					</button>
 				</div>
 			)}
 		</div>
