@@ -4,19 +4,43 @@ import Header from './Header';
 import PlaylistHeader from './PlaylistHeader';
 import { GetUserContext } from '../context/UserContext';
 import ReactSpinner from 'react-bootstrap-spinner';
-import { getPlaylistTracks } from '../spotify/playlists';
+import { getPlaylistTracks, getDuplicateTracks } from '../spotify/playlists';
 import { getSavedTracks } from '../spotify/tracks';
 
 const Body = () => {
 	const [loading, setLoading] = useState(false);
 	const { currPlaylist, user, token } = GetUserContext();
 
+	const thing = [
+		{
+			id: 200,
+			person: {
+				name: 'rich',
+				age: 15,
+			},
+		},
+		{
+			id: 120,
+			person: {
+				name: 'bill',
+				age: 11,
+			},
+		},
+		{
+			id: 120,
+			person: {
+				name: 'huh',
+				age: 15,
+			},
+		},
+	];
+
 	const onClick = () => {
 		setLoading(true);
 
 		if (currPlaylist) {
 			getPlaylistTracks(token, currPlaylist.id).then((resp) => {
-				console.log(resp);
+				console.log(getDuplicateTracks(resp));
 				setLoading(false);
 			});
 		} else {
