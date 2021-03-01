@@ -4,7 +4,11 @@ import Header from './Header';
 import PlaylistHeader from './PlaylistHeader';
 import { GetUserContext } from '../context/UserContext';
 import ReactSpinner from 'react-bootstrap-spinner';
-import { getPlaylistTracks, getDuplicateTracks } from '../spotify/playlists';
+import {
+	getPlaylistTracks,
+	getDuplicateTracks,
+	test,
+} from '../spotify/playlists';
 import { getSavedTracks } from '../spotify/tracks';
 
 const Body = () => {
@@ -45,7 +49,7 @@ const Body = () => {
 			});
 		} else {
 			getSavedTracks(token).then((resp) => {
-				console.log(resp);
+				console.log(getDuplicateTracks(resp));
 				setLoading(false);
 			});
 		}

@@ -13,35 +13,18 @@ export const getPlaylistTracks = async (token, playlistId, offset) => {
 
 	return await getPaginatedResponse(url, token, limit, 0);
 };
-/*
-export const getDuplicateTracks = (tracks) => {
-	return Object.values(
-		tracks.reduce((c, v) => {
-			let key = '';
-			v.track.artists.forEach((artist) => (key += artist.name));
-			key += v.track.name;
-
-			c[key] = c[key] || [];
-			c[key].push(v);
-
-			console.log(c);
-			return c;
-		}, [])
-	).reduce((c, v) => (v.length > 1 ? c.concat(v) : c), []);
-}; */
 
 export const getDuplicateTracks = (tracks) => {
-	return Object.values(
-		tracks.reduce((c, v) => {
-			let key = '';
-			v.track.artists.forEach((artist) => (key += artist.name));
-			key += v.track.name;
+	const sortedTracks = tracks.sort((a, b) => {
+		return (
+			a.track.artists[0].name.localeCompare(b.track.artists[0].name) ||
+			a.track.name.localeCompare(b.track.name)
+		);
+	});
 
-			c[key] = c[key] || [];
-			c[key].push(v);
+	sortedTracks.forEach((song) => {
+		console.log(song.track.artists[0].name + song.track.name);
+	});
 
-			console.log(c);
-			return c;
-		}, [])
-	).reduce((c, v) => (v.length > 1 ? c.concat(v) : c), []);
+	return sortedTracks;
 };
