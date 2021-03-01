@@ -23,36 +23,33 @@ export const getDuplicateTracks = (tracks) => {
 		);
 	});
 
-	/*sortedTracks.forEach((song) => {
-		console.log(song.track.artists[0].name + song.track.name);
-	}); */
-
 	const q = new LinkedQueue();
 
+	let dups = [];
+	let tempDups = [];
+
 	sortedTracks.forEach((track) => {
-		if (q.peek() != null) {
-			console.log(q.peek());
-			console.log('here');
-			if (getTrackKey(track).includes(getTrackKey(q.peek()))) {
-				// do stuff when we find duplicate
+		if (q.peek()) {
+			if (getTrackKey(track).includes(getTrackKey(q.peek().value))) {
+				tempDups.push(q.shift().value);
+				tempDups.push(track);
 			} else {
-				q.deq();
+				if (tempDups.length > 0) {
+					dups.push(tempDups);
+					tempDups = [];
+				}
+				q.shift();
 			}
 		}
 
 		q.push(track);
 	});
 
-	// iterate through sorted tracks, adding each track to a queue
-	// compare current track with track on top of queue
-	// if current track does not contain track at top of queue, pop off queue
-	// otherwise keep an array of arrays that corresponds to duplicates. Add current song and duplicate onto array
-
-	return sortedTracks;
+	return dups;
 };
 
 const getTrackTitle = (track) => {
-	return track.track.artists[0].name;
+	return track.track.name;
 };
 
 const getTrackArtist = (track) => {

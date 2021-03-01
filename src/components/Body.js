@@ -15,30 +15,6 @@ const Body = () => {
 	const [loading, setLoading] = useState(false);
 	const { currPlaylist, user, token } = GetUserContext();
 
-	const thing = [
-		{
-			id: 200,
-			person: {
-				name: 'rich',
-				age: 15,
-			},
-		},
-		{
-			id: 120,
-			person: {
-				name: 'bill',
-				age: 11,
-			},
-		},
-		{
-			id: 120,
-			person: {
-				name: 'huh',
-				age: 15,
-			},
-		},
-	];
-
 	const onClick = () => {
 		setLoading(true);
 
