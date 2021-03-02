@@ -9,8 +9,9 @@
 }
 
 .sidebarItemSelected {
+	background: linear-gradient(to right, black 99%, #1db954 1%);
 	display: flex;
-	color: green;
+	color: white;
 	cursor: pointer;
 	transition: 100ms color ease-in;
 	padding-left: 7%;
