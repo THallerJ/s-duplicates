@@ -22,7 +22,7 @@ const Sidebar = () => {
 		<div className="sidebar">
 			<img className="sidebarLogo" src={SpotifyLogo} alt="" />
 			<SidebarItem
-				title="Library"
+				title="Saved Tracks"
 				onClick={onClickLibrary}
 				Icon={LibraryMusicIcon}
 			/>

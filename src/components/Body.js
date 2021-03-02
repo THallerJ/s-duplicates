@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import '../style/Body.css';
 import Header from './Header';
-import PlaylistHeader from './PlaylistHeader';
 import { GetUserContext } from '../context/UserContext';
 import ReactSpinner from 'react-bootstrap-spinner';
-import {
-	getPlaylistTracks,
-	getDuplicateTracks,
-	test,
-} from '../spotify/playlists';
+import { getPlaylistTracks, getDuplicateTracks } from '../spotify/playlists';
 import { getSavedTracks } from '../spotify/tracks';
 
 const Body = () => {
@@ -34,20 +29,7 @@ const Body = () => {
 	return (
 		<div className="body">
 			<Header username={user ? user : ''} />
-			{currPlaylist == null ? (
-				<PlaylistHeader
-					className="playlistHeader"
-					title="Library"
-					songCount=" "
-				/>
-			) : (
-				<PlaylistHeader
-					className="playlistHeader"
-					title={currPlaylist.name}
-					songCount={currPlaylist.tracks.total + ' songs'}
-					imgSrc={currPlaylist.images[0].url}
-				/>
-			)}
+
 			{loading ? (
 				<div className="center">
 					<ReactSpinner
