@@ -32,7 +32,7 @@ const Sidebar = () => {
 				{playlists?.map((playlist) => (
 					<SidebarItem
 						key={playlist.id}
-						className="test"
+						playlistId={playlist.id}
 						onClick={() => onClickPlaylist(playlist)}
 						title={playlist.name}
 						imgSrc={playlist.images[0].url}

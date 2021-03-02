@@ -1,9 +1,23 @@
 import React from 'react';
 import '../style/SidebarItem.css';
+import { GetUserContext } from '../context/UserContext';
 
-const SidebarItem = ({ title, imgSrc, Icon, onClick }) => {
+const SidebarItem = ({ playlistId, title, imgSrc, Icon, onClick }) => {
+	const { currPlaylist } = GetUserContext();
+
 	return (
-		<div className="sidebarItem" onClick={onClick}>
+		<div
+			className={
+				currPlaylist
+					? currPlaylist.id === playlistId
+						? 'sidebarItemSelected'
+						: 'sidebarItem'
+					: currPlaylist == null && playlistId == null
+					? 'sidebarItemSelected'
+					: 'sidebarItem'
+			}
+			onClick={onClick}
+		>
 			{Icon && <Icon className="material-icons md-18" />}
 			{imgSrc ? (
 				<div className="sidebarItemImg">

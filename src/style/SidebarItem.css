@@ -8,6 +8,16 @@
 	font-size: 0.8rem;
 }
 
+.sidebarItemSelected {
+	display: flex;
+	color: green;
+	cursor: pointer;
+	transition: 100ms color ease-in;
+	padding-left: 7%;
+	padding-bottom: 5%;
+	font-size: 0.8rem;
+}
+
 .sidebarItem:hover {
 	color: white;
 	overflow: visible;
