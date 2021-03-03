@@ -7,6 +7,7 @@ export const UserProvider = ({ children }) => {
 	const [user, setUser] = useState();
 	const [playlists, setPlaylists] = useState();
 	const [currPlaylist, setCurrPlaylist] = useState(null);
+	const [dupTracks, setDupTracks] = useState(null);
 
 	const value = {
 		token,
@@ -17,6 +18,8 @@ export const UserProvider = ({ children }) => {
 		setPlaylists,
 		currPlaylist,
 		setCurrPlaylist,
+		dupTracks,
+		setDupTracks,
 	};
 
 	return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
