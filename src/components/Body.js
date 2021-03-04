@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import '../style/Body.css';
-import Header from './Header';
-import { GetUserContext } from '../context/UserContext';
-import ReactSpinner from 'react-bootstrap-spinner';
-import { getPlaylistTracks, getDuplicateTracks } from '../spotify/playlists';
-import { getSavedTracks } from '../spotify/tracks';
-import Track from './Track';
+import React, { useState, useEffect } from "react";
+import "../style/Body.css";
+import Header from "./Header";
+import { GetUserContext } from "../context/UserContext";
+import ReactSpinner from "react-bootstrap-spinner";
+import { getPlaylistTracks, getDuplicateTracks } from "../spotify/playlists";
+import { getSavedTracks } from "../spotify/tracks";
+import Track from "./Track";
 
 const Body = () => {
 	const [loading, setLoading] = useState(false);
@@ -27,7 +27,7 @@ const Body = () => {
 			});
 		} else {
 			getSavedTracks(token).then((resp) => {
-				console.log(getDuplicateTracks(resp));
+				setDupTracks(getDuplicateTracks(resp));
 				setLoading(false);
 			});
 		}
@@ -35,7 +35,7 @@ const Body = () => {
 
 	return (
 		<div className="body">
-			<Header username={user ? user : ''} />
+			<Header username={user ? user : ""} />
 
 			{loading ? (
 				<div className="center">
