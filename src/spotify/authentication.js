@@ -1,36 +1,36 @@
-import axios from 'axios';
+import axios from "axios";
 
-const clientId = '531cd6244e3a4221af493a844f8f7a96';
+const clientId = "531cd6244e3a4221af493a844f8f7a96";
 
-const redirectUri = 'http://localhost:3000';
+const redirectUri = "http://localhost:3000";
 
 const scopes = [
-	'user-library-modify',
-	'user-library-read',
-	'playlist-modify-public',
-	'playlist-modify-private',
-	'playlist-read-private',
+	"user-library-modify",
+	"user-library-read",
+	"playlist-modify-public",
+	"playlist-modify-private",
+	"playlist-read-private",
 ];
 
-const showDialog = 'false';
+const showDialog = "false";
 
 export const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
-	' '
+	" "
 )}&response_type=token&show_dialog=${showDialog}`;
 
 export const getAccessToken = () => {
 	if (window.location.hash) {
-		const token = window.location.hash.split('=')[1].split('&')[0];
-		window.location.hash = '';
+		const token = window.location.hash.split("=")[1].split("&")[0];
+		window.location.hash = "";
 		return token;
 	}
 };
 
 export const getUser = async (token) => {
 	const user = await axios
-		.get('https://api.spotify.com/v1/me', {
+		.get("https://api.spotify.com/v1/me", {
 			headers: {
-				Authorization: 'Bearer ' + token,
+				Authorization: "Bearer " + token,
 			},
 		})
 		.then((response) => {

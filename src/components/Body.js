@@ -5,7 +5,7 @@ import { GetUserContext } from "../context/UserContext";
 import ReactSpinner from "react-bootstrap-spinner";
 import { getPlaylistTracks, getDuplicateTracks } from "../spotify/playlists";
 import { getSavedTracks } from "../spotify/tracks";
-import Track from "./Track";
+import DupTrackGroup from "./DupTrackGroup";
 
 const Body = () => {
 	const [loading, setLoading] = useState(false);
@@ -22,12 +22,16 @@ const Body = () => {
 
 		if (currPlaylist) {
 			getPlaylistTracks(token, currPlaylist.id).then((resp) => {
-				setDupTracks(getDuplicateTracks(resp));
+				const dups = getDuplicateTracks(resp);
+				setDupTracks(dups);
+				console.log(dups);
 				setLoading(false);
 			});
 		} else {
 			getSavedTracks(token).then((resp) => {
-				setDupTracks(getDuplicateTracks(resp));
+				const dups = getDuplicateTracks(resp);
+				setDupTracks(dups);
+				console.log(dups);
 				setLoading(false);
 			});
 		}
@@ -49,7 +53,13 @@ const Body = () => {
 			) : (
 				<div>
 					{dupTracks ? (
-						<Track />
+						dupTracks.length === 0 ? (
+							<h1 style={{ color: "red" }}>No duplicates found</h1>
+						) : (
+							dupTracks.map((track) => (
+								<DupTrackGroup key={track[0].added_at} />
+							))
+						)
 					) : (
 						<button className="button center" onClick={onClick}>
 							Find Duplicates
