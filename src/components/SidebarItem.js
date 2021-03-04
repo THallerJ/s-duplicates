@@ -18,7 +18,7 @@ const SidebarItem = ({ playlistId, title, imgSrc, Icon, onClick }) => {
 			}
 			onClick={onClick}
 		>
-			{Icon && <Icon className="material-icons md-18" />}
+			{Icon && <Icon className="material-icons md-18 icon" />}
 			{imgSrc ? (
 				<div className="sidebarItemImg">
 					<img className="sidebarImg" src={imgSrc} alt="" />

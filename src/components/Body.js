@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import "../style/Body.css";
-import Header from "./Header";
-import { GetUserContext } from "../context/UserContext";
-import ReactSpinner from "react-bootstrap-spinner";
-import { getPlaylistTracks, getDuplicateTracks } from "../spotify/playlists";
-import { getSavedTracks } from "../spotify/tracks";
-import DupTrackGroup from "./DupTrackGroup";
+import React, { useState, useEffect } from 'react';
+import '../style/Body.css';
+import Header from './Header';
+import { GetUserContext } from '../context/UserContext';
+import ReactSpinner from 'react-bootstrap-spinner';
+import { getPlaylistTracks, getDuplicateTracks } from '../spotify/playlists';
+import { getSavedTracks } from '../spotify/tracks';
+import DupTrackGroup from './DupTrackGroup';
 
 const Body = () => {
 	const [loading, setLoading] = useState(false);
@@ -39,8 +39,6 @@ const Body = () => {
 
 	return (
 		<div className="body">
-			<Header username={user ? user : ""} />
-
 			{loading ? (
 				<div className="center">
 					<ReactSpinner
@@ -54,10 +52,10 @@ const Body = () => {
 				<div>
 					{dupTracks ? (
 						dupTracks.length === 0 ? (
-							<h1 style={{ color: "red" }}>No duplicates found</h1>
+							<h1 style={{ color: 'red' }}>No duplicates found</h1>
 						) : (
-							dupTracks.map((track) => (
-								<DupTrackGroup key={track[0].added_at} />
+							dupTracks.map((tracks) => (
+								<DupTrackGroup key={tracks[0].added_at} tracks={tracks} />
 							))
 						)
 					) : (

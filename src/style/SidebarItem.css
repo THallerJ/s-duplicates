@@ -9,7 +9,8 @@
 }
 
 .sidebarItemSelected {
-	background: linear-gradient(to right, black 99%, #1db954 1%);
+	/*background: linear-gradient(to right, #121212 99%, #1db954 1%); */
+	background: linear-gradient(to LEFT, #121212 99%, #1db954 1%);
 	display: flex;
 	color: white;
 	cursor: pointer;
@@ -31,10 +32,15 @@
 .sidebarImg {
 	height: 40px;
 	width: 40px;
+	margin-top: 5px;
+}
+
+.icon {
+	margin-top: 10px;
 }
 
 .sidebarItemImgTxt {
-	margin-top: 10px;
+	margin-top: 12px;
 	margin-left: 10px;
 	font-weight: 700;
 	font-size: 1rem;
@@ -44,6 +50,7 @@
 }
 
 .sidebarItemTxt {
+	margin-top: 10px;
 	margin-left: 10px;
 	font-weight: 700;
 	font-size: 1rem;

@@ -1,9 +1,13 @@
-import React from "react";
+import React from 'react';
+import Track from './Track';
+import '../style/DupTrackGroup.css';
 
-export const DupTrackGroup = () => {
+export const DupTrackGroup = ({ tracks }) => {
 	return (
-		<div>
-			<h1>Track</h1>
+		<div className="duplicates">
+			{tracks.map((song) => {
+				return <Track track={song} />;
+			})}
 		</div>
 	);
 };
