@@ -6,6 +6,7 @@ import ReactSpinner from 'react-bootstrap-spinner';
 import { getPlaylistTracks, getDuplicateTracks } from '../spotify/playlists';
 import { getSavedTracks } from '../spotify/tracks';
 import DupTrackGroup from './DupTrackGroup';
+import TracksHeader from './TracksHeader';
 
 const Body = () => {
 	const [loading, setLoading] = useState(false);
@@ -54,9 +55,12 @@ const Body = () => {
 						dupTracks.length === 0 ? (
 							<h1 style={{ color: 'red' }}>No duplicates found</h1>
 						) : (
-							dupTracks.map((tracks) => (
-								<DupTrackGroup key={tracks[0].added_at} tracks={tracks} />
-							))
+							<div className="duplicateTracks">
+								<TracksHeader />
+								{dupTracks.map((tracks) => (
+									<DupTrackGroup key={tracks[0].added_at} tracks={tracks} />
+								))}
+							</div>
 						)
 					) : (
 						<button className="button center" onClick={onClick}>
