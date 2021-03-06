@@ -1,9 +1,9 @@
 .track {
 	color: white;
 	display: grid;
-	grid-template-columns: 23% 23% 23% 23% 8%;
+	grid-template-columns: 23% 23% 23% 23% 5%;
 	column-gap: 1rem;
-	padding: 5px;
+	padding: 10px 0px 10px 0px;
 }
 
 .title {
