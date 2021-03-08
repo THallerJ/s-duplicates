@@ -1,6 +1,6 @@
 import React from 'react';
 import '../style/Track.css';
-import DeleteIcon from '@material-ui/icons/Delete';
+import ClearIcon from '@material-ui/icons/Clear';
 import IconButton from '@material-ui/core/IconButton';
 
 const Track = ({ track }) => {
@@ -20,9 +20,9 @@ const Track = ({ track }) => {
 
 			<IconButton
 				style={{ padding: '0px' }}
-				onClick={console.log('delete clicked')}
+				onClick={() => console.log('clicked')}
 			>
-				<DeleteIcon style={{ color: '#ef5350' }} />
+				<ClearIcon style={{ color: '#ffa4a2' }} />
 			</IconButton>
 		</div>
 	);
