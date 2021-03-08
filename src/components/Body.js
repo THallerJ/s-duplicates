@@ -53,7 +53,9 @@ const Body = () => {
 				<div>
 					{dupTracks ? (
 						dupTracks.length === 0 ? (
-							<h1 style={{ color: 'red' }}>No duplicates found</h1>
+							<h1 className="center" style={{ color: '#1db954' }}>
+								No duplicates found
+							</h1>
 						) : (
 							<div className="duplicateTracks">
 								<TracksHeader />
