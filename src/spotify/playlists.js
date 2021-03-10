@@ -17,20 +17,27 @@ export const getPlaylistTracks = async (token, playlistId, offset) => {
 
 export const getDuplicateTracks = (tracks) => {
 	const sortedTracks = tracks.sort((a, b) => {
-		return (
-			getTrackArtist(a).localeCompare(getTrackArtist(b)) ||
-			getTrackTitle(a).localeCompare(getTrackTitle(a))
-		);
+		if (getTrackArtist(a) > getTrackArtist(b)) return 1;
+		if (getTrackArtist(a) < getTrackArtist(b)) return -1;
+
+		if (getTrackTitle(a) > getTrackTitle(b)) return 1;
+		if (getTrackTitle(a) < getTrackTitle(b)) return -1;
 	});
 
 	const q = new LinkedQueue();
 
+	sortedTracks.forEach((song) => {
+		console.log(getTrackKey(song));
+	});
 	let dups = [];
 	let tempDups = [];
 
 	sortedTracks.forEach((track) => {
 		if (q.peek()) {
-			if (getTrackKey(track).includes(getTrackKey(q.peek().value))) {
+			const currKey = getTrackKey(track);
+			const qKey = getTrackKey(q.peek().value);
+
+			if (currKey.includes(qKey) || qKey.includes(currKey)) {
 				tempDups.push(q.shift().value);
 				tempDups.push(track);
 			} else {
