@@ -15,7 +15,7 @@ export const removeSavedTrack = async (token, id) => {
 				ids: id,
 			},
 			headers: {
-				Authorization: 'Bearer ' + token,
+				Authorization: `Bearer ${token}`,
 			},
 		})
 		.then(async (resp) => {
@@ -28,12 +28,14 @@ export const removeSavedTrack = async (token, id) => {
 	return response;
 };
 
-export const getSavedTracksInfo = async (token) => {
+export const removePlaylistTrack = async (token, trackId, playlistId) => {
+	const tracks = [{ uri: trackId }];
 	const response = await axios
-		.get('https://api.spotify.com/v1/me/tracks', {
-			params: { minimum: 1 },
+		.delete('https://api.spotify.com/v1/me/tracks', {
+			params: { tracks: tracks },
 			headers: {
-				Authorization: 'Bearer ' + token,
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${token}`,
 			},
 		})
 		.then(async (resp) => {

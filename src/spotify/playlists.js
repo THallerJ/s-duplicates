@@ -52,6 +52,7 @@ export const getDuplicateTracks = (tracks) => {
 		q.push(track);
 	});
 
+	console.log(dups);
 	return dups;
 };
 

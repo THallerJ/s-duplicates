@@ -4,14 +4,21 @@ import ClearIcon from '@material-ui/icons/Clear';
 import IconButton from '@material-ui/core/IconButton';
 import { removeSavedTrack } from '../spotify/tracks.js';
 import { GetUserContext } from '../context/UserContext';
+import { NativeSelect } from '@material-ui/core';
 
 const Track = ({ track }) => {
 	const { token, currPlaylist } = GetUserContext();
 
 	const getTrackLength = (ms) => {
-		const min = Math.floor((ms / 1000 / 60) << 0);
-		const sec = Math.floor((ms / 1000) % 60);
-		return min + ':' + sec;
+		let minutes = Math.floor(ms / 60000);
+		let seconds = ((ms % 60000) / 1000).toFixed(0);
+
+		if (seconds == 60) {
+			minutes++;
+			seconds = 0;
+		}
+
+		return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 	};
 
 	return (
@@ -25,7 +32,7 @@ const Track = ({ track }) => {
 			<IconButton
 				style={{ padding: '0px' }}
 				onClick={() => {
-					removeSavedTrack(token, track.track.id);
+					removeSavedTrack(token, track.track.uri, currPlaylist.id);
 				}}
 			>
 				<ClearIcon style={{ color: '#ffa4a2' }} />
