@@ -2,7 +2,7 @@ import React from 'react';
 import '../style/Track.css';
 import ClearIcon from '@material-ui/icons/Clear';
 import IconButton from '@material-ui/core/IconButton';
-import { removeSavedTrack } from '../spotify/tracks.js';
+import { removeSavedTrack, removePlaylistTrack } from '../spotify/tracks.js';
 import { GetUserContext } from '../context/UserContext';
 import { NativeSelect } from '@material-ui/core';
 
@@ -21,6 +21,16 @@ const Track = ({ track }) => {
 		return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 	};
 
+	const deleteTrack = () => {
+		console.log(currPlaylist);
+
+		if (currPlaylist) {
+			removePlaylistTrack(token, track.track.uri, currPlaylist.id);
+		} else {
+			removeSavedTrack(token, track.track.id);
+		}
+	};
+
 	return (
 		// make sure to include all artists
 		<div className="track">
@@ -29,12 +39,7 @@ const Track = ({ track }) => {
 			<h1 className="title">{track.track.album.name}</h1>
 			<h1 className="title">{getTrackLength(track.track.duration_ms)}</h1>
 
-			<IconButton
-				style={{ padding: '0px' }}
-				onClick={() => {
-					removeSavedTrack(token, track.track.uri, currPlaylist.id);
-				}}
-			>
+			<IconButton style={{ padding: '0px' }} onClick={deleteTrack}>
 				<ClearIcon style={{ color: '#ffa4a2' }} />
 			</IconButton>
 		</div>

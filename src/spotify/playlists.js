@@ -26,9 +26,6 @@ export const getDuplicateTracks = (tracks) => {
 
 	const q = new LinkedQueue();
 
-	sortedTracks.forEach((song) => {
-		console.log(getTrackKey(song));
-	});
 	let dups = [];
 	let tempDups = [];
 
@@ -52,7 +49,6 @@ export const getDuplicateTracks = (tracks) => {
 		q.push(track);
 	});
 
-	console.log(dups);
 	return dups;
 };
 
