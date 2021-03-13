@@ -29,15 +29,19 @@ export const getDuplicateTracks = (tracks) => {
 	let dups = [];
 	let tempDups = [];
 
+	let qFlag = false; // tracks whether item at head of q has been added to tempDups
+
 	sortedTracks.forEach((track) => {
 		if (q.peek()) {
 			const currKey = getTrackKey(track);
 			const qKey = getTrackKey(q.peek().value);
 
 			if (currKey.includes(qKey) || qKey.includes(currKey)) {
-				tempDups.push(q.shift().value);
+				if (!qFlag) tempDups.push(q.shift().value);
 				tempDups.push(track);
+				qFlag = true;
 			} else {
+				qFlag = false;
 				if (tempDups.length > 0) {
 					dups.push(tempDups);
 					tempDups = [];

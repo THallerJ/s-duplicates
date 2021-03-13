@@ -6,7 +6,7 @@ export const DupTrackGroup = ({ tracks }) => {
 	return (
 		<div className="duplicates">
 			{tracks.map((song) => {
-				return <Track key={song.id} track={song} />;
+				return <Track key={song.track.id} track={song} />;
 			})}
 		</div>
 	);

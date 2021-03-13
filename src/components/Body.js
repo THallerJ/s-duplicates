@@ -22,6 +22,7 @@ const Body = () => {
 		setLoading(true);
 
 		if (currPlaylist) {
+			console.log('called');
 			getPlaylistTracks(token, currPlaylist.id).then((resp) => {
 				const dups = getDuplicateTracks(resp);
 				setDupTracks(dups);
@@ -59,9 +60,13 @@ const Body = () => {
 						) : (
 							<div className="duplicateTracks">
 								<TracksHeader />
-								{dupTracks.map((tracks) => (
-									<DupTrackGroup key={tracks[0].added_at} tracks={tracks} />
-								))}
+								{dupTracks.map((tracks) =>
+									tracks.length > 1 ? (
+										<DupTrackGroup key={tracks[0].track.id} tracks={tracks} />
+									) : (
+										''
+									)
+								)}
 							</div>
 						)
 					) : (

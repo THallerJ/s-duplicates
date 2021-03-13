@@ -4,10 +4,9 @@ import ClearIcon from '@material-ui/icons/Clear';
 import IconButton from '@material-ui/core/IconButton';
 import { removeSavedTrack, removePlaylistTrack } from '../spotify/tracks.js';
 import { GetUserContext } from '../context/UserContext';
-import { NativeSelect } from '@material-ui/core';
 
 const Track = ({ track }) => {
-	const { token, currPlaylist } = GetUserContext();
+	const { token, currPlaylist, dupTracks, setDupTracks } = GetUserContext();
 
 	const getTrackLength = (ms) => {
 		let minutes = Math.floor(ms / 60000);
@@ -21,13 +20,30 @@ const Track = ({ track }) => {
 		return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 	};
 
+	const deleteLocalTrack = (trackId) => {
+		const temp = dupTracks;
+		let i, j;
+
+		for (i = 0; i < temp.length; i++) {
+			for (j = 0; j < temp[i].length; j++) {
+				if (temp[i][j].track.id === trackId) {
+					temp[i].splice(j, 1);
+					setDupTracks(temp);
+				}
+			}
+		}
+	};
+
 	const deleteTrack = () => {
 		console.log(currPlaylist);
 
+		deleteLocalTrack(track.track.id);
+		console.log(dupTracks);
+
 		if (currPlaylist) {
-			removePlaylistTrack(token, track.track.uri, currPlaylist.id);
+			//	removePlaylistTrack(token, track.track.uri, currPlaylist.id);
 		} else {
-			removeSavedTrack(token, track.track.id);
+			//removeSavedTrack(token, track.track.id);
 		}
 	};
 
