@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import '../style/Body.css';
-import Header from './Header';
 import { GetUserContext } from '../context/UserContext';
 import ReactSpinner from 'react-bootstrap-spinner';
 import { getPlaylistTracks, getDuplicateTracks } from '../spotify/playlists';
@@ -10,19 +9,12 @@ import TracksHeader from './TracksHeader';
 
 const Body = () => {
 	const [loading, setLoading] = useState(false);
-	const {
-		currPlaylist,
-		user,
-		token,
-		dupTracks,
-		setDupTracks,
-	} = GetUserContext();
+	const { currPlaylist, token, dupTracks, setDupTracks } = GetUserContext();
 
 	const onClick = () => {
 		setLoading(true);
 
 		if (currPlaylist) {
-			console.log('called');
 			getPlaylistTracks(token, currPlaylist.id).then((resp) => {
 				const dups = getDuplicateTracks(resp);
 				setDupTracks(dups);
@@ -39,6 +31,41 @@ const Body = () => {
 		}
 	};
 
+	const DuplicateResults = () => {
+		// if the user has searched for duplicate tracks
+		if (dupTracks) {
+			// no duplicate tracks were found
+			if (dupTracks.length === 0) {
+				return (
+					<h1 className="center" style={{ color: '#1db954' }}>
+						No duplicates found
+					</h1>
+				);
+				// duplicate tracks were found
+			} else {
+				return (
+					<div className="duplicateTracks">
+						<TracksHeader />
+						{dupTracks.map((tracks) => {
+							if (tracks.length > 1) {
+								return (
+									<DupTrackGroup key={tracks[0].track.id} tracks={tracks} />
+								);
+							}
+						})}
+					</div>
+				);
+			}
+			// if the user has not yet searched for duplicate tracks
+		} else {
+			return (
+				<button className="button center" onClick={onClick}>
+					Find Duplicates
+				</button>
+			);
+		}
+	};
+
 	return (
 		<div className="body">
 			{loading ? (
@@ -51,30 +78,7 @@ const Body = () => {
 					/>
 				</div>
 			) : (
-				<div>
-					{dupTracks ? (
-						dupTracks.length === 0 ? (
-							<h1 className="center" style={{ color: '#1db954' }}>
-								No duplicates found
-							</h1>
-						) : (
-							<div className="duplicateTracks">
-								<TracksHeader />
-								{dupTracks.map((tracks) =>
-									tracks.length > 1 ? (
-										<DupTrackGroup key={tracks[0].track.id} tracks={tracks} />
-									) : (
-										''
-									)
-								)}
-							</div>
-						)
-					) : (
-						<button className="button center" onClick={onClick}>
-							Find Duplicates
-						</button>
-					)}
-				</div>
+				<DuplicateResults />
 			)}
 		</div>
 	);

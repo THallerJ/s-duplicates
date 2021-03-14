@@ -27,8 +27,7 @@ const Track = ({ track }) => {
 		for (i = 0; i < temp.length; i++) {
 			for (j = 0; j < temp[i].length; j++) {
 				if (temp[i][j].track.id === trackId) {
-					temp[i].splice(j, 1);
-					setDupTracks(temp);
+					setDupTracks(temp[i].splice(j, 1));
 				}
 			}
 		}
