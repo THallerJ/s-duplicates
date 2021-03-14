@@ -36,6 +36,10 @@ export const getDuplicateTracks = (tracks) => {
 			const currKey = getTrackKey(track);
 			const qKey = getTrackKey(q.peek().value);
 
+			while (!currKey.includes(qKey) && !qKey.includes(currKey) && q.peek()) {
+				q.shift();
+			}
+
 			if (currKey.includes(qKey) || qKey.includes(currKey)) {
 				if (!qFlag) tempDups.push(q.shift().value);
 				tempDups.push(track);
