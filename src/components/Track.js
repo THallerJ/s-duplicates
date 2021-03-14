@@ -21,26 +21,23 @@ const Track = ({ track }) => {
 	};
 
 	const deleteLocalTrack = (trackId) => {
-		const temp = dupTracks;
 		let i, j;
 
-		for (i = 0; i < temp.length; i++) {
-			for (j = 0; j < temp[i].length; j++) {
-				if (temp[i][j].track.id === trackId) {
-					setDupTracks(temp[i].splice(j, 1));
+		for (i = 0; i < dupTracks.length; i++) {
+			for (j = 0; j < dupTracks[i].length; j++) {
+				if (dupTracks[i][j].track.id === trackId) {
+					dupTracks[i].splice(j, 1);
+					setDupTracks([...dupTracks]);
 				}
 			}
 		}
 	};
 
 	const deleteTrack = () => {
-		console.log(currPlaylist);
-
 		deleteLocalTrack(track.track.id);
-		console.log(dupTracks);
 
 		if (currPlaylist) {
-			//	removePlaylistTrack(token, track.track.uri, currPlaylist.id);
+			//removePlaylistTrack(token, track.track.uri, currPlaylist.id);
 		} else {
 			//removeSavedTrack(token, track.track.id);
 		}
