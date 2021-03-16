@@ -29,3 +29,15 @@
 	color: #2a2a2a;
 	transition: 100ms color ease-in;
 }
+
+.body::-webkit-scrollbar {
+	width: 12px;
+}
+
+.body::-webkit-scrollbar-track {
+	background: linear-gradient(#373737 -10%, #181818);
+}
+
+.body::-webkit-scrollbar-thumb {
+	background-color: gray;
+}

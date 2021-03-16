@@ -24,3 +24,15 @@
 	font-size: 0.75rem;
 	color: #bfbfbf;
 }
+
+.sidebar::-webkit-scrollbar {
+	width: 5px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+	background: linear-gradient(#373737 -10%, #181818);
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+	background-color: #535353;
+}
