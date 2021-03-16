@@ -9,14 +9,16 @@
 }
 
 .sidebarItemSelected {
-	/*background: linear-gradient(to right, #121212 99%, #1db954 1%); */
-	background: linear-gradient(to LEFT, #121212 99%, #1db954 1%);
+	background: linear-gradient(to left, #282828 98%, #1db954 2%);
 	display: flex;
 	color: white;
 	cursor: pointer;
 	transition: 100ms color ease-in;
 	padding-left: 7%;
 	margin-bottom: 5%;
+	margin-right: 10px;
+	margin-left: 10px;
+	border-radius: 10px;
 	font-size: 0.8rem;
 }
 
