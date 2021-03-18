@@ -29,6 +29,7 @@
 
 .sidebarItemImg {
 	display: flex;
+	width: 90%;
 }
 
 .sidebarImg {
