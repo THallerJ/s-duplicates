@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../style/Track.css';
 import ClearIcon from '@material-ui/icons/Clear';
 import IconButton from '@material-ui/core/IconButton';
 import { removeSavedTrack, removePlaylistTrack } from '../spotify/tracks.js';
 import { GetUserContext } from '../context/UserContext';
+import ConfirmDialog from './ConfirmDialog';
 
 const Track = ({ track }) => {
 	const { token, currPlaylist, dupTracks, setDupTracks } = GetUserContext();
+	const [open, setOpen] = useState(false);
 
 	const getTrackLength = (ms) => {
 		let minutes = Math.floor(ms / 60000);
@@ -43,20 +45,30 @@ const Track = ({ track }) => {
 		}
 	};
 
+	const getTrackArtists = () => {
+		return track.track.artists
+			.map((artist) => {
+				return artist.name;
+			})
+			.join(', ');
+	};
+
 	return (
 		<div className="track">
+			<ConfirmDialog
+				open={open}
+				setOpen={setOpen}
+				title={'Confirm Deletion'}
+				content={`${track.track.name} - ${getTrackArtists()}`}
+				onConfirm={deleteTrack}
+				onCancel={() => setOpen(false)}
+			></ConfirmDialog>
 			<h1 className="title">{track.track.name}</h1>
-			<h1 className="title">
-				{track.track.artists
-					.map((artist) => {
-						return artist.name;
-					})
-					.join(', ')}
-			</h1>
+			<h1 className="title">{getTrackArtists()}</h1>
 			<h1 className="title">{track.track.album.name}</h1>
 			<h1 className="title">{getTrackLength(track.track.duration_ms)}</h1>
 
-			<IconButton style={{ padding: '0px' }} onClick={deleteTrack}>
+			<IconButton style={{ padding: '0px' }} onClick={() => setOpen(true)}>
 				<ClearIcon style={{ color: '#ffa4a2' }} />
 			</IconButton>
 		</div>
