@@ -26,7 +26,11 @@ const useStyles = makeStyles({
 	},
 	content: {
 		color: 'white',
-		padding: '30px',
+		paddingLeft: '30px',
+		paddingRight: '30px',
+	},
+	buttonPanel: {
+		paddingTop: '20px',
 	},
 	confirmButton: {
 		backgroundColor: '#76d275',
@@ -36,6 +40,7 @@ const useStyles = makeStyles({
 	},
 	divider: {
 		background: '#282828',
+		marginBottom: '20px',
 	},
 });
 
@@ -67,14 +72,19 @@ const ConfirmDialog = ({
 
 			<Divider className={classes.divider} variant="middle" light={true} />
 
-			<DialogContent className={classes.content}>
-				<Typography align="center" variant="body1">
-					{content}
-				</Typography>
-			</DialogContent>
+			{/* This makes Confirm Dialog more modular by allowing it to display multiline content */}
+			{content.split('\n').map((line) => {
+				return (
+					<DialogContent className={classes.content}>
+						<Typography align="center" variant="body1">
+							{line}
+						</Typography>
+					</DialogContent>
+				);
+			})}
 
 			<Grid container alignItems="center" direction="column">
-				<DialogActions>
+				<DialogActions className={classes.buttonPanel}>
 					<Button
 						className={classes.confirmButton}
 						startIcon={<CheckIcon />}

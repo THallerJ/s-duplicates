@@ -59,7 +59,7 @@ const Track = ({ track }) => {
 				open={open}
 				setOpen={setOpen}
 				title={'Confirm Deletion'}
-				content={`${track.track.name} - ${getTrackArtists()}`}
+				content={`${getTrackArtists()} \n ${track.track.name}`}
 				onConfirm={deleteTrack}
 				onCancel={() => setOpen(false)}
 			></ConfirmDialog>
