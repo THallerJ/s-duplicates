@@ -30,16 +30,18 @@ const useStyles = makeStyles({
 		paddingRight: '30px',
 	},
 	buttonPanel: {
-		paddingTop: '20px',
+		padding: '20px',
 	},
 	confirmButton: {
 		backgroundColor: '#76d275',
+		fontWeight: 'bold',
 		'&:hover': {
 			backgroundColor: '#43a047',
 		},
 	},
 	cancelButton: {
 		backgroundColor: '#ff6f60',
+		fontWeight: 'bold',
 		'&:hover': {
 			backgroundColor: '#e53935',
 		},
