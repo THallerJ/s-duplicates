@@ -10,7 +10,7 @@ import {
 } from '@material-ui/core';
 import CheckIcon from '@material-ui/icons/Check';
 import ClearIcon from '@material-ui/icons/Clear';
-import { makeStyles, withTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
 
 const useStyles = makeStyles({
@@ -34,9 +34,15 @@ const useStyles = makeStyles({
 	},
 	confirmButton: {
 		backgroundColor: '#76d275',
+		'&:hover': {
+			backgroundColor: '#43a047',
+		},
 	},
 	cancelButton: {
 		backgroundColor: '#ff6f60',
+		'&:hover': {
+			backgroundColor: '#e53935',
+		},
 	},
 	divider: {
 		background: '#282828',

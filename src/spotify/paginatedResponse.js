@@ -7,7 +7,6 @@ export const getPaginatedResponse = async (url, token, limit, offset) => {
 				offset: offset,
 				limit: limit,
 			},
-
 			headers: {
 				Authorization: 'Bearer ' + token,
 			},
