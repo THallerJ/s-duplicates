@@ -28,7 +28,16 @@ const Track = ({ track }) => {
 		for (i = 0; i < dupTracks.length; i++) {
 			for (j = 0; j < dupTracks[i].length; j++) {
 				if (dupTracks[i][j].track.id === trackId) {
+					// remove duplicate track
 					dupTracks[i].splice(j, 1);
+
+					// remove array of duplicates if there are no duplicates remaining
+					if (dupTracks[i].length < 2) {
+						dupTracks.splice(i, 1);
+						setDupTracks([...dupTracks]);
+						return;
+					}
+
 					setDupTracks([...dupTracks]);
 				}
 			}
