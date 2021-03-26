@@ -6,16 +6,25 @@ import LibraryMusicIcon from '@material-ui/icons/LibraryMusic';
 import { GetUserContext } from '../context/UserContext';
 
 const Sidebar = () => {
-	const { playlists, setCurrPlaylist, setDupTracks } = GetUserContext();
+	const {
+		playlists,
+		setCurrPlaylist,
+		setDupTracks,
+		loading,
+	} = GetUserContext();
 
 	const onClickLibrary = () => {
-		setDupTracks(null);
-		setCurrPlaylist(null);
+		if (!loading) {
+			setDupTracks(null);
+			setCurrPlaylist(null);
+		}
 	};
 
 	const onClickPlaylist = (playlist) => {
-		setDupTracks(null);
-		setCurrPlaylist(playlist);
+		if (!loading) {
+			setDupTracks(null);
+			setCurrPlaylist(playlist);
+		}
 	};
 
 	return (

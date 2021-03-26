@@ -73,20 +73,24 @@ const ConfirmDialog = ({
 			onBackdropClick={() => setOpen(false)}
 		>
 			<DialogTitle className={classes.title}>
-				<Typography align="center" variant="subtitle2">
-					{title}
-				</Typography>
+				<div>
+					<Typography align="center" variant="subtitle2">
+						{title}
+					</Typography>
+				</div>
 			</DialogTitle>
 
 			<Divider className={classes.divider} variant="middle" light={true} />
 
 			{/* This makes Confirm Dialog more modular by allowing it to display multiline content */}
-			{content.split('\n').map((line) => {
+			{content.split('\n').map((line, index) => {
 				return (
 					<DialogContent className={classes.content}>
-						<Typography align="center" variant="body1">
-							{line}
-						</Typography>
+						<div>
+							<Typography align="center" variant="body1">
+								{line}
+							</Typography>
+						</div>
 					</DialogContent>
 				);
 			})}

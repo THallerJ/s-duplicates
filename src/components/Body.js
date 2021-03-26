@@ -8,8 +8,14 @@ import DupTrackGroup from './DupTrackGroup';
 import TracksHeader from './TracksHeader';
 
 const Body = () => {
-	const [loading, setLoading] = useState(false);
-	const { currPlaylist, token, dupTracks, setDupTracks } = GetUserContext();
+	const {
+		currPlaylist,
+		token,
+		dupTracks,
+		setDupTracks,
+		loading,
+		setLoading,
+	} = GetUserContext();
 
 	const onClick = () => {
 		setLoading(true);
