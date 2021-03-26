@@ -1,5 +1,45 @@
-import { getPaginatedResponse } from './paginatedResponse';
 import axios from 'axios';
+
+const getPaginatedResponse = async (url, token, limit, offset) => {
+	const response = await axios
+		.get(url, {
+			params: {
+				offset: offset,
+				limit: limit,
+			},
+			headers: {
+				Authorization: 'Bearer ' + token,
+			},
+		})
+		.then(async (resp) => {
+			if (resp.data.next) {
+				return resp.data.items.concat(
+					await getPaginatedResponse(url, token, limit, offset + limit)
+				);
+			} else {
+				return resp.data.items;
+			}
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+
+	return response;
+};
+
+export const getPlaylists = async (token, userName, offset) => {
+	const limit = 50;
+	const url = `https://api.spotify.com/v1/users/${userName}/playlists`;
+
+	return await getPaginatedResponse(url, token, limit, 0);
+};
+
+export const getPlaylistTracks = async (token, playlistId, offset) => {
+	const limit = 100;
+	const url = `https://api.spotify.com/v1/playlists/${playlistId}/tracks?`;
+
+	return await getPaginatedResponse(url, token, limit, 0);
+};
 
 export const getSavedTracks = async (token, offset) => {
 	const limit = 50;

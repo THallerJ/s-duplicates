@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { GetUserContext } from '../context/UserContext';
+import { GetUserContext } from '../context/AppContext';
 import { getAccessToken } from '../spotify/authentication';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {

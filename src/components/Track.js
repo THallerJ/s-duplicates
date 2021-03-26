@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import '../style/Track.css';
 import ClearIcon from '@material-ui/icons/Clear';
 import IconButton from '@material-ui/core/IconButton';
-import { removeSavedTrack, removePlaylistTrack } from '../spotify/tracks.js';
-import { GetUserContext } from '../context/UserContext';
+import {
+	removeSavedTrack,
+	removePlaylistTrack,
+} from '../spotify/spotifyApi.js';
+import { GetUserContext } from '../context/AppContext';
 import ConfirmDialog from './ConfirmDialog';
 
 const Track = ({ track }) => {

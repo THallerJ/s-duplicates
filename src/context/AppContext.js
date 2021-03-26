@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
 
-export const UserContext = React.createContext();
+export const AppContext = React.createContext();
 
-export const UserProvider = ({ children }) => {
+export const AppContextProvider = ({ children }) => {
 	const [token, setToken] = useState();
 	const [user, setUser] = useState();
 	const [playlists, setPlaylists] = useState();
@@ -25,7 +25,7 @@ export const UserProvider = ({ children }) => {
 		setLoading,
 	};
 
-	return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
+	return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
 
-export const GetUserContext = () => useContext(UserContext);
+export const GetUserContext = () => useContext(AppContext);

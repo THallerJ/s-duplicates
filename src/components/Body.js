@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import '../style/Body.css';
-import { GetUserContext } from '../context/UserContext';
+import { GetUserContext } from '../context/AppContext';
 import ReactSpinner from 'react-bootstrap-spinner';
-import { getPlaylistTracks, getDuplicateTracks } from '../spotify/playlists';
-import { getSavedTracks } from '../spotify/tracks';
+import { getSavedTracks, getPlaylistTracks } from '../spotify/spotifyApi';
+import { getDuplicateTracks } from '../spotify/duplicateTracks';
 import DupTrackGroup from './DupTrackGroup';
 import TracksHeader from './TracksHeader';
 

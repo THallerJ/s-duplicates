@@ -3,7 +3,7 @@ import '../style/Sidebar.css';
 import SpotifyLogo from '../images/spotify_white_logo.png';
 import SidebarItem from './SidebarItem';
 import LibraryMusicIcon from '@material-ui/icons/LibraryMusic';
-import { GetUserContext } from '../context/UserContext';
+import { GetUserContext } from '../context/AppContext';
 
 const Sidebar = () => {
 	const {

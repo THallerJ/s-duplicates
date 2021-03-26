@@ -1,6 +1,6 @@
 import React from 'react';
 import '../style/SidebarItem.css';
-import { GetUserContext } from '../context/UserContext';
+import { GetUserContext } from '../context/AppContext';
 
 const SidebarItem = ({ playlistId, title, imgSrc, Icon, onClick }) => {
 	const { currPlaylist } = GetUserContext();
