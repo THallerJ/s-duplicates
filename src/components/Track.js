@@ -51,9 +51,9 @@ const Track = ({ track }) => {
 		deleteLocalTrack(track.track.id);
 
 		if (currPlaylist) {
-			//removePlaylistTrack(token, track.track.uri, currPlaylist.id);
+			removePlaylistTrack(token, track.track.uri, currPlaylist.id);
 		} else {
-			//removeSavedTrack(token, track.track.id);
+			removeSavedTrack(token, track.track.id);
 		}
 	};
 

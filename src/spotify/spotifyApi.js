@@ -21,6 +21,7 @@ const getPaginatedResponse = async (url, token, limit, offset) => {
 			}
 		})
 		.catch((err) => {
+			window.location.reload();
 			console.log(err);
 		});
 

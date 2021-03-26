@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import '../style/Body.css';
 import { GetUserContext } from '../context/AppContext';
 import ReactSpinner from 'react-bootstrap-spinner';

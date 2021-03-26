@@ -12,6 +12,11 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 			const token = getAccessToken();
 			setToken(token);
 			setDoRender(true);
+
+			// logs out user after 1 hour when access token expires
+			setTimeout(() => {
+				setToken(null);
+			}, 3600000);
 		}
 	}, []);
 
