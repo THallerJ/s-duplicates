@@ -28,11 +28,17 @@
 }
 
 .spotifyLoginLogo {
-	height: 250px;
+	height: 15vw;
 	vertical-align: middle;
 }
 
 .loginElements > p {
 	color: white;
 	font-size: 2rem;
+}
+
+@media only screen and (max-width: 850px) {
+	.loginElements > p {
+		font-size: 1rem;
+	}
 }
