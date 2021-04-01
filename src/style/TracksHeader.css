@@ -11,3 +11,9 @@
 	font-size: 0.75rem;
 	color: #bfbfbf;
 }
+
+@media only screen and (max-width: 600px) {
+	.trackHeader {
+		display: none;
+	}
+}

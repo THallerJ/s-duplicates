@@ -6,9 +6,28 @@
 	padding: 10px 0px 10px 0px;
 }
 
-.title {
+.trackInfo {
 	font-size: 1rem;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+}
+
+@media only screen and (max-width: 600px) {
+	.track {
+		display: grid;
+		grid-template-rows: 1fr 1fr;
+		grid-template-columns: 85%;
+
+		grid-auto-flow: column;
+	}
+	.albumName {
+		display: none;
+	}
+	.duration {
+		display: none;
+	}
+	.artistName {
+		font-size: 0.7rem;
+	}
 }

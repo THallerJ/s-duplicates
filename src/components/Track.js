@@ -75,10 +75,12 @@ const Track = ({ track }) => {
 				onConfirm={deleteTrack}
 				onCancel={() => setOpen(false)}
 			></ConfirmDialog>
-			<h1 className="title">{track.track.name}</h1>
-			<h1 className="title">{getTrackArtists()}</h1>
-			<h1 className="title">{track.track.album.name}</h1>
-			<h1 className="title">{getTrackLength(track.track.duration_ms)}</h1>
+			<h1 className="trackInfo titleName">{track.track.name}</h1>
+			<h1 className="trackInfo artistName">{getTrackArtists()}</h1>
+			<h1 className="trackInfo albumName">{track.track.album.name}</h1>
+			<h1 className="trackInfo duration">
+				{getTrackLength(track.track.duration_ms)}
+			</h1>
 
 			<IconButton style={{ padding: '0px' }} onClick={() => setOpen(true)}>
 				<ClearIcon style={{ color: '#ffa4a2' }} />
