@@ -16,10 +16,9 @@
 @media only screen and (max-width: 600px) {
 	.track {
 		display: grid;
-		grid-template-rows: 1fr 1fr;
-		grid-template-columns: 85%;
-
 		grid-auto-flow: column;
+		grid-template-rows: auto auto;
+		grid-template-columns: 85%;
 	}
 	.albumName {
 		display: none;
