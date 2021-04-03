@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const clientId = '531cd6244e3a4221af493a844f8f7a96';
+const clientId = process.env.REACT_APP_CLIENT_ID;
 
 const redirectUri = 'http://localhost:3000';
 
