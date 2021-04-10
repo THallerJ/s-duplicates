@@ -21,28 +21,27 @@ const getPaginatedResponse = async (url, token, limit, offset) => {
 			}
 		})
 		.catch((err) => {
-			window.location.reload();
 			console.log(err);
 		});
 
 	return response;
 };
 
-export const getPlaylists = async (token, userName, offset) => {
+export const getPlaylists = async (token, userName) => {
 	const limit = 50;
 	const url = `https://api.spotify.com/v1/users/${userName}/playlists`;
 
 	return await getPaginatedResponse(url, token, limit, 0);
 };
 
-export const getPlaylistTracks = async (token, playlistId, offset) => {
+export const getPlaylistTracks = async (token, playlistId) => {
 	const limit = 100;
 	const url = `https://api.spotify.com/v1/playlists/${playlistId}/tracks?`;
 
 	return await getPaginatedResponse(url, token, limit, 0);
 };
 
-export const getSavedTracks = async (token, offset) => {
+export const getSavedTracks = async (token) => {
 	const limit = 50;
 	const url = `https://api.spotify.com/v1/me/tracks`;
 
