@@ -85,7 +85,7 @@ const ConfirmDialog = ({
 			{/* This makes Confirm Dialog more modular by allowing it to display multiline content */}
 			{content.split('\n').map((line, index) => {
 				return (
-					<DialogContent className={classes.content}>
+					<DialogContent key={index} className={classes.content}>
 						<div>
 							<Typography align="center" variant="body1">
 								{line}
