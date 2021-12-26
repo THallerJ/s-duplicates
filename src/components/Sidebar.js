@@ -1,17 +1,13 @@
-import React from 'react';
-import '../style/Sidebar.css';
-import SpotifyLogo from '../images/spotify_white_logo.png';
-import SidebarItem from './SidebarItem';
-import LibraryMusicIcon from '@material-ui/icons/LibraryMusic';
-import { GetUserContext } from '../context/AppContext';
+import React from "react";
+import "../style/Sidebar.css";
+import SpotifyLogo from "../images/spotify_white_logo.png";
+import SidebarItem from "./SidebarItem";
+import LibraryMusicIcon from "@material-ui/icons/LibraryMusic";
+import { GetUserContext } from "../context/AppContext";
 
 const Sidebar = () => {
-	const {
-		playlists,
-		setCurrPlaylist,
-		setDupTracks,
-		loading,
-	} = GetUserContext();
+	const { playlists, setCurrPlaylist, setDupTracks, loading } =
+		GetUserContext();
 
 	const onClickLibrary = () => {
 		if (!loading) {
@@ -44,7 +40,7 @@ const Sidebar = () => {
 						playlistId={playlist.id}
 						onClick={() => onClickPlaylist(playlist)}
 						title={playlist.name}
-						imgSrc={playlist.images[0].url}
+						imgSrc={playlist.images[0] ? playlist.images[0].url : null}
 					/>
 				))}
 			</div>
