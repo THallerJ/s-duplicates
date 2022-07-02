@@ -1,70 +1,64 @@
-# Getting Started with Create React App
+# Spotify Duplicates
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+[Spotify Duplicates](https://sduplicates.netlify.app) helps you find and remove duplicate songs in your library.
 
-In the project directory, you can run:
+Duplicate songs may appear in your library because Spotify treats different versions of the same song as entirely separate songs. So, a user may--for example--unwittingly have the single version, album version, and a remastered version of the same song saved in their library or playlist.
 
-### `npm start`
+## Find Duplicates Algorithm
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Several apps exist that provide a similar functionality to [Spotify Duplicates](https://sduplicates.netlify.app). However, the algorithm that most of these apps use to find duplicate tracks only identify tracks that share the same ID. This is problematic since duplicate tracks don't necessarily share the same ID, which means that many duplicates are invisible to these algorithms.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+My algorithm avoids this issue by sorting the songs by a key '[Artist][song]'. Songs with similar titles created by the same artist then appear next to each other in the list of songs. This makes checking for matching songs easy as we iterate through the list of songs.
 
-### `npm test`
+The full algorithm is below:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+export const getDuplicateTracks = (tracks) => {
+	const sortedTracks = tracks.sort((a, b) => {
+		if (getTrackArtist(a) > getTrackArtist(b)) return 1;
+		if (getTrackArtist(a) < getTrackArtist(b)) return -1;
 
-### `npm run build`
+		if (getTrackTitle(a) > getTrackTitle(b)) return 1;
+		if (getTrackTitle(a) < getTrackTitle(b)) return -1;
+	});
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+	const q = new LinkedQueue();
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+	let dups = [];
+	let tempDups = [];
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+	let qFlag = false;
 
-### `npm run eject`
+	sortedTracks.forEach((track) => {
+		if (q.peek()) {
+			const currKey = getTrackKey(track);
+			const qKey = getTrackKey(q.peek().value);
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+			while (!currKey.includes(qKey) && !qKey.includes(currKey) && q.peek()) {
+				q.shift();
+			}
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+			if (currKey.includes(qKey) || qKey.includes(currKey)) {
+				if (!qFlag) tempDups.push(q.shift().value);
+				tempDups.push(track);
+				qFlag = true;
+			} else {
+				qFlag = false;
+				if (tempDups.length > 0) {
+					dups.push(tempDups);
+					tempDups = [];
+				}
+				q.shift();
+			}
+		}
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+		q.push(track);
+	});
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+	return dups;
+};
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
