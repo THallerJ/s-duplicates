@@ -4,7 +4,7 @@
 
 [Spotify Duplicates](https://sduplicates.netlify.app) helps you find and remove duplicate songs in your library.
 
-Duplicate songs may appear in your library because Spotify treats different versions of the same song as entirely separate songs. So, a user may--for example--unwittingly have the single version, album version, and a remastered version of the same song saved in their library or playlist.
+Duplicate songs may appear in your library because Spotify treats different versions of the same song as entirely separate songs. So, a user may--for example--unwittingly have the single version, album version, and remastered version of the same song saved in their library or playlist.
 
 ## Find Duplicates Algorithm
 
@@ -16,45 +16,31 @@ The full algorithm is below:
 
 ```
 export const getDuplicateTracks = (tracks) => {
-	const sortedTracks = tracks.sort((a, b) => {
-		if (getTrackArtist(a) > getTrackArtist(b)) return 1;
-		if (getTrackArtist(a) < getTrackArtist(b)) return -1;
-
-		if (getTrackTitle(a) > getTrackTitle(b)) return 1;
-		if (getTrackTitle(a) < getTrackTitle(b)) return -1;
-	});
-
-	const q = new LinkedQueue();
+	const sortedTracks = sortByKey(tracks);
 
 	let dups = [];
 	let tempDups = [];
-
-	let qFlag = false;
+	let flag = false;
+	let prev = null;
 
 	sortedTracks.forEach((track) => {
-		if (q.peek()) {
-			const currKey = getTrackKey(track);
-			const qKey = getTrackKey(q.peek().value);
+		const currKey = getTrackKey(track);
+		let prevKey = null;
 
-			while (!currKey.includes(qKey) && !qKey.includes(currKey) && q.peek()) {
-				q.shift();
-			}
+		if (prev) prevKey = getTrackKey(prev);
 
-			if (currKey.includes(qKey) || qKey.includes(currKey)) {
-				if (!qFlag) tempDups.push(q.shift().value);
-				tempDups.push(track);
-				qFlag = true;
-			} else {
-				qFlag = false;
-				if (tempDups.length > 0) {
-					dups.push(tempDups);
-					tempDups = [];
-				}
-				q.shift();
+		if (prev && (currKey.includes(prevKey) || prevKey.includes(currKey))) {
+			if (!flag) tempDups.push(prev);
+			tempDups.push(track);
+			flag = true;
+		} else {
+			prev = track;
+			if (tempDups.length) {
+				dups.push(tempDups);
+				tempDups = [];
 			}
+			flag = false;
 		}
-
-		q.push(track);
 	});
 
 	return dups;

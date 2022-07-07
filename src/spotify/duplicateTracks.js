@@ -1,45 +1,41 @@
-const { LinkedQueue } = require('@oresoftware/linked-queue');
-
-export const getDuplicateTracks = (tracks) => {
-	const sortedTracks = tracks.sort((a, b) => {
+const sortByKey = (tracks) => {
+	return tracks.sort((a, b) => {
 		if (getTrackArtist(a) > getTrackArtist(b)) return 1;
 		if (getTrackArtist(a) < getTrackArtist(b)) return -1;
 
 		if (getTrackTitle(a) > getTrackTitle(b)) return 1;
 		if (getTrackTitle(a) < getTrackTitle(b)) return -1;
-	});
 
-	const q = new LinkedQueue();
+		return 0;
+	});
+};
+
+export const getDuplicateTracks = (tracks) => {
+	const sortedTracks = sortByKey(tracks);
 
 	let dups = [];
 	let tempDups = [];
-
-	let qFlag = false; // tracks whether item at head of q has been added to tempDups
+	let flag = false;
+	let prev = null;
 
 	sortedTracks.forEach((track) => {
-		if (q.peek()) {
-			const currKey = getTrackKey(track);
-			const qKey = getTrackKey(q.peek().value);
+		const currKey = getTrackKey(track);
+		let prevKey = null;
 
-			while (!currKey.includes(qKey) && !qKey.includes(currKey) && q.peek()) {
-				q.shift();
-			}
+		if (prev) prevKey = getTrackKey(prev);
 
-			if (currKey.includes(qKey) || qKey.includes(currKey)) {
-				if (!qFlag) tempDups.push(q.shift().value);
-				tempDups.push(track);
-				qFlag = true;
-			} else {
-				qFlag = false;
-				if (tempDups.length > 0) {
-					dups.push(tempDups);
-					tempDups = [];
-				}
-				q.shift();
+		if (prev && (currKey.includes(prevKey) || prevKey.includes(currKey))) {
+			if (!flag) tempDups.push(prev);
+			tempDups.push(track);
+			flag = true;
+		} else {
+			prev = track;
+			if (tempDups.length) {
+				dups.push(tempDups);
+				tempDups = [];
 			}
+			flag = false;
 		}
-
-		q.push(track);
 	});
 
 	return dups;
