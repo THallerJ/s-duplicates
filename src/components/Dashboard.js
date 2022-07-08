@@ -1,10 +1,10 @@
-import React, { useEffect, useRef } from 'react';
-import { GetUserContext } from '../context/AppContext';
-import Sidebar from './Sidebar';
-import Body from './Body';
-import '../style/Dashboard.css';
-import { getUser } from '../spotify/authentication';
-import { getPlaylists } from '../spotify/spotifyApi';
+import React, { useEffect, useRef } from "react";
+import { GetUserContext } from "../context/AppContext";
+import Sidebar from "./Sidebar";
+import Body from "./Body";
+import "../style/Dashboard.css";
+import { getUser } from "../spotify/authentication";
+import { getPlaylists } from "../spotify/spotifyApi";
 
 const Dashboard = () => {
 	const { token, user, setUser, setPlaylists } = GetUserContext();
@@ -14,7 +14,7 @@ const Dashboard = () => {
 		getUser(token).then((resp) => {
 			setUser(resp.data.display_name);
 		});
-	}, [token]);
+	}, [token, setUser]);
 
 	useEffect(() => {
 		if (isInitialMount.current) {
@@ -24,7 +24,7 @@ const Dashboard = () => {
 				setPlaylists(resp);
 			});
 		}
-	}, [user]);
+	}, [user, setPlaylists, token]);
 
 	return (
 		<div className="dashboard">

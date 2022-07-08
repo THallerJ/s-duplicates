@@ -1,23 +1,26 @@
-import React from 'react';
-import '../style/SidebarItem.css';
-import { GetUserContext } from '../context/AppContext';
+import React from "react";
+import "../style/SidebarItem.css";
+import { GetUserContext } from "../context/AppContext";
 
 const SidebarItem = ({ playlistId, title, imgSrc, Icon, onClick }) => {
 	const { currPlaylist } = GetUserContext();
 
-	return (
-		<div
-			className={
-				currPlaylist
-					? currPlaylist.id === playlistId
-						? 'sidebarItemSelected'
-						: 'sidebarItem'
-					: currPlaylist == null && playlistId == null
-					? 'sidebarItemSelected'
-					: 'sidebarItem'
+	function getClass() {
+		if (currPlaylist) {
+			if (currPlaylist.id === playlistId) {
+				return "sidebarItemSelected";
+			} else {
+				return "sidebarItem";
 			}
-			onClick={onClick}
-		>
+		} else if (currPlaylist == null && playlistId == null) {
+			return "sidebarItemSelected sidebarItemSelectedIcon";
+		} else {
+			return "sidebarItem";
+		}
+	}
+
+	return (
+		<div className={getClass()} onClick={onClick}>
 			{Icon && <Icon className="material-icons md-18 icon" />}
 			{imgSrc ? (
 				<div className="sidebarItemImg">

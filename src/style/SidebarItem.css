@@ -22,6 +22,10 @@
 	font-size: 0.8rem;
 }
 
+.sidebarItemSelectedIcon {
+	padding-bottom: 3%;
+}
+
 .sidebarItem:hover {
 	color: white;
 	overflow: visible;
