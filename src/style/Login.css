@@ -16,15 +16,15 @@
 	padding: 1rem;
 	background-color: #1db954;
 	font-weight: 700;
-	color: white;
+	color: #121212;
 	border-radius: 100px;
 	text-decoration: none;
 }
 
 .loginElements > a:hover {
 	color: #121212;
+	background-color: #84d464;
 	text-decoration: none;
-	transition: 100ms color ease-in;
 }
 
 .spotifyLoginLogo {

@@ -1,0 +1,98 @@
+.modal {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #5a5959;
+	color: white;
+	padding: 16px;
+	min-width: 20%;
+}
+
+.dialogBody {
+	display: flex;
+	padding: 8px;
+	flex-direction: column;
+}
+
+.btn {
+	border: none;
+	padding: 8px;
+	font-weight: 700;
+}
+
+.btn:hover {
+	cursor: pointer;
+}
+
+.okButton {
+	background-color: #1db954;
+	margin-left: 4px;
+}
+
+.cancelButton {
+	background-color: #282828;
+	color: white;
+	margin-right: 4px;
+}
+
+.dialogBody > h2 {
+	font-size: 1.25em;
+	text-align: center;
+	margin-bottom: 4px;
+}
+
+.contentLine > span {
+	font-weight: 500;
+}
+
+.dialogBody > hr {
+	border: 1px solid #282828;
+	margin-bottom: 16px;
+	margin-top: 4px;
+	text-align: center;
+	overflow: auto;
+}
+
+.contentInfo {
+	color: #bfbfbf;
+	font-size: 0.75em;
+	font-weight: 700;
+	width: 9ch;
+	text-transform: uppercase;
+}
+
+.contentLine {
+	display: grid;
+	padding-bottom: 16px;
+	align-items: center;
+	grid-template-columns: 1fr 4fr;
+}
+
+.buttonGroup {
+	display: flex;
+	justify-content: center;
+	padding-top: 16px;
+}
+
+.overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: hsla(0, 0%, 0%, 0.6);
+}
+
+@media only screen and (max-width: 600px) {
+	.modal {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		background-color: #5a5959;
+		color: white;
+		padding: 16px;
+		min-width: 79%;
+	}
+}

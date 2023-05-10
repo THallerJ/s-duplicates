@@ -1,0 +1,17 @@
+.pill {
+	display: flex;
+	align-items: center;
+	background-color: #282828;
+	white-space: nowrap;
+	margin: 8px 4px 8px 4px;
+	padding: 8px 16px;
+	border-radius: 24px;
+	font-weight: 700;
+	font-size: 0.75rem;
+	color: white;
+}
+
+.pillSelected {
+	background-color: #1db954;
+	color: black;
+}

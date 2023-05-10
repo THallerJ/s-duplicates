@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 const getPaginatedResponse = async (url, token, limit, offset) => {
 	const response = await axios
@@ -8,7 +8,7 @@ const getPaginatedResponse = async (url, token, limit, offset) => {
 				limit: limit,
 			},
 			headers: {
-				Authorization: 'Bearer ' + token,
+				Authorization: "Bearer " + token,
 			},
 		})
 		.then(async (resp) => {
@@ -50,7 +50,7 @@ export const getSavedTracks = async (token) => {
 
 export const removeSavedTrack = async (token, id) => {
 	const response = await axios
-		.delete('https://api.spotify.com/v1/me/tracks', {
+		.delete("https://api.spotify.com/v1/me/tracks", {
 			params: {
 				ids: id,
 			},
@@ -74,7 +74,7 @@ export const removePlaylistTrack = async (token, uri, playlistId) => {
 	const response = await axios
 		.delete(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
 			headers: {
-				'Content-Type': 'application/json',
+				"Content-Type": "application/json",
 				Authorization: `Bearer ${token}`,
 			},
 			data: {
@@ -89,4 +89,12 @@ export const removePlaylistTrack = async (token, uri, playlistId) => {
 		});
 
 	return response;
+};
+
+export const getTrackArtists = (track) => {
+	return track.track.artists
+		.map((artist) => {
+			return artist.name;
+		})
+		.join(", ");
 };

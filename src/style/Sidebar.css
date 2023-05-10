@@ -1,7 +1,5 @@
 .sidebar {
 	background-color: #121212;
-	flex: 0.15;
-	min-width: 200px;
 	height: 100vh;
 	overflow: auto;
 }
@@ -20,9 +18,11 @@
 
 .sidebarTitle {
 	margin-left: 15px;
-	padding: 5px;
+	margin-top: 15px;
 	font-size: 0.75rem;
 	color: #bfbfbf;
+	text-transform: uppercase;
+	display: inline-block;
 }
 
 .sidebar::-webkit-scrollbar {

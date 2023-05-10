@@ -1,32 +1,59 @@
 .track {
 	color: white;
 	display: grid;
-	grid-template-columns: 26% 26% 26% 15% 0%;
-	column-gap: 1%;
-	padding: 10px 0px 10px 0px;
+	grid-template-columns: 3fr 3fr 3fr 2fr 1fr;
+	column-gap: 2%;
+	padding: 2px;
+	align-items: center;
+}
+
+.mobileTrack {
+	display: flex;
+	flex-direction: row;
+	color: white;
+	align-items: center;
+	padding-bottom: 16px;
+	justify-content: space-between;
 }
 
 .trackInfo {
-	font-size: 1rem;
-	white-space: nowrap;
+	font-size: 0.8rem;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.deleteBtn {
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+
+.deleteIcon {
+	width: 24px;
+	height: 24px;
 }
 
 @media only screen and (max-width: 600px) {
-	.track {
-		display: grid;
-		grid-auto-flow: column;
-		grid-template-rows: auto auto;
-		grid-template-columns: 85%;
+	.trackInfo {
+		font-size: 0.8rem;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		padding-right: 8px;
 	}
-	.albumName {
-		display: none;
+	.titleName {
+		font-size: 1em;
 	}
-	.duration {
-		display: none;
-	}
+
 	.artistName {
+		font-size: 0.8rem;
+		font-weight: 500;
+		color: #bfbfbf;
+	}
+
+	.albumName {
 		font-size: 0.7rem;
+		color: #bfbfbf;
+		font-weight: 500;
 	}
 }

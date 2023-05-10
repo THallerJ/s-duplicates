@@ -1,43 +1,63 @@
 .body {
-	background: linear-gradient(#373737 -10%, #181818);
-	flex: 0.85;
-	height: 100vh;
-	overflow: auto;
+	background: #000;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	height: 100%;
 }
 
 .center {
 	position: absolute;
 	left: 50%;
-	top: 40%;
+	top: 50%;
+	transform: translate(-50%, -50%);
 }
 
-.playlistHeader {
-	padding: 5%;
+.duplicateTracks {
+	height: 100%;
+	overflow-y: scroll;
+}
+
+.instructionText {
+	color: white;
+	text-align: center;
+	font-size: 2rem;
+	padding-bottom: 16px;
 }
 
 .button {
 	padding: 1rem;
 	border: #1db954;
-	color: white;
+	color: #121212;
 	background-color: #1db954;
 	font-weight: 700;
 	border-radius: 100px;
 	white-space: nowrap;
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%);
 }
 
 .button:hover {
-	color: #2a2a2a;
-	transition: 100ms color ease-in;
+	background-color: #84d464;
 }
 
-.body::-webkit-scrollbar {
-	width: 12px;
+.duplicateTracks::-webkit-scrollbar {
+	width: 8px;
+	height: 0px;
 }
 
-.body::-webkit-scrollbar-track {
-	background: linear-gradient(#373737 -10%, #181818);
+.duplicateTracks::-webkit-scrollbar-track {
+	background-color: black;
 }
 
-.body::-webkit-scrollbar-thumb {
+.duplicateTracks::-webkit-scrollbar-thumb {
 	background-color: gray;
+}
+
+@media only screen and (max-width: 600px) {
+	.instructionText {
+		font-size: 1.5em;
+	}
 }

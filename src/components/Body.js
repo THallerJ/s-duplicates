@@ -1,11 +1,11 @@
-import React from "react";
 import "../style/Body.css";
 import { GetUserContext } from "../context/AppContext";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import { getSavedTracks, getPlaylistTracks } from "../spotify/spotifyApi";
 import { getDuplicateTracks } from "../spotify/duplicateTracks";
 import DupTrackGroup from "./DupTrackGroup";
 import TracksHeader from "./TracksHeader";
+import PlaylistPills from "./PlaylistPills";
+import Spinner from "./Spinner";
 
 const Body = () => {
 	const { currPlaylist, token, dupTracks, setDupTracks, loading, setLoading } =
@@ -42,29 +42,41 @@ const Body = () => {
 				// duplicate tracks were found
 			} else {
 				return (
-					<div className="duplicateTracks">
+					<>
 						<TracksHeader />
-						{dupTracks.map((tracks) => {
-							return <DupTrackGroup key={tracks[0].track.id} tracks={tracks} />;
-						})}
-					</div>
+
+						<div className="duplicateTracks">
+							{dupTracks.map((tracks, i) => {
+								return (
+									<DupTrackGroup key={tracks[0].track.id} tracks={tracks} />
+								);
+							})}
+						</div>
+					</>
 				);
 			}
 			// if the user has not yet searched for duplicate tracks
 		} else {
 			return (
-				<button className="button center" onClick={onClick}>
-					Find Duplicates
-				</button>
+				<div className="center">
+					<h2 className="instructionText">
+						Find duplicates in "
+						{currPlaylist ? currPlaylist.name : "Liked Songs"}"
+					</h2>
+					<button className="button" onClick={onClick}>
+						Find Duplicates
+					</button>
+				</div>
 			);
 		}
 	};
 
 	return (
 		<div className="body">
+			<PlaylistPills />
 			{loading ? (
 				<div className="center">
-					<CircularProgress style={{ color: "white" }} />
+					<Spinner />
 				</div>
 			) : (
 				<DuplicateResults />

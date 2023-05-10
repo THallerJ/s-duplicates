@@ -1,0 +1,18 @@
+.playlistPills {
+	visibility: hidden;
+	display: none;
+}
+
+.playlistPills::-webkit-scrollbar {
+	height: 0px;
+}
+
+@media only screen and (max-width: 600px) {
+	.playlistPills {
+		display: flex;
+		width: 100%;
+		overflow: auto;
+		background: #121212;
+		visibility: visible;
+	}
+}

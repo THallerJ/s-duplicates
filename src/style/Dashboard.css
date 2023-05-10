@@ -4,3 +4,24 @@
 	overflow: auto;
 	flex-wrap: wrap;
 }
+
+.sidebar {
+	flex: 0.15;
+	min-width: 200px;
+}
+
+.body {
+	flex: 0.85;
+}
+
+@media only screen and (max-width: 600px) {
+	.sidebar {
+		flex: 0;
+		visibility: hidden;
+		min-width: 0px;
+	}
+
+	.body {
+		flex: 1;
+	}
+}

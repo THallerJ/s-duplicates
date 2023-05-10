@@ -1,5 +1,14 @@
 .duplicates {
-	background-color: #535353;
-	padding: 10px;
-	margin: 10px;
+	background-color: #282828;
+	padding-left: 16px;
+	padding-right: 16px;
+	margin: 0px 4px 4px 8px;
+}
+
+.duplicates > :first-child {
+	padding-top: 16px;
+}
+
+.duplicates > :last-child {
+	padding-bottom: 16px;
 }

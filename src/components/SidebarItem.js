@@ -5,30 +5,25 @@ import { GetUserContext } from "../context/AppContext";
 const SidebarItem = ({ playlistId, title, imgSrc, Icon, onClick }) => {
 	const { currPlaylist } = GetUserContext();
 
-	function getClass() {
-		if (currPlaylist) {
-			if (currPlaylist.id === playlistId) {
-				return "sidebarItemSelected";
-			} else {
-				return "sidebarItem";
-			}
-		} else if (currPlaylist == null && playlistId == null) {
-			return "sidebarItemSelected sidebarItemSelectedIcon";
-		} else {
-			return "sidebarItem";
-		}
+	function getSelectedClass() {
+		if (currPlaylist && currPlaylist.id === playlistId)
+			return "sidebarItemSelected";
+		if (currPlaylist == null && playlistId == null)
+			return "sidebarItemSelected";
+
+		return null;
 	}
 
 	return (
-		<div className={getClass()} onClick={onClick}>
-			{Icon && <Icon className="material-icons md-18 icon" />}
+		<div className={`sidebarItem ${getSelectedClass()}`} onClick={onClick}>
+			{Icon && <Icon className="icon" />}
 			{imgSrc ? (
 				<div className="sidebarItemImg">
-					<img className="sidebarImg" src={imgSrc} alt="" />
-					<p className="sidebarItemImgTxt">{title}</p>
+					<img className="img" src={imgSrc} alt="" />
+					<p className="itemTxt">{title}</p>
 				</div>
 			) : (
-				<p className="sidebarItemTxt">{title}</p>
+				<p className="itemTxt">{title}</p>
 			)}
 		</div>
 	);

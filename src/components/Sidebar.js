@@ -2,8 +2,8 @@ import React from "react";
 import "../style/Sidebar.css";
 import SpotifyLogo from "../images/spotify_white_logo.png";
 import SidebarItem from "./SidebarItem";
-import LibraryMusicIcon from "@material-ui/icons/LibraryMusic";
 import { GetUserContext } from "../context/AppContext";
+import { ReactComponent as MusicIcon } from "../icons/music.svg";
 
 const Sidebar = () => {
 	const { playlists, setCurrPlaylist, setDupTracks, loading } =
@@ -27,9 +27,9 @@ const Sidebar = () => {
 		<div className="sidebar">
 			<img className="sidebarLogo" src={SpotifyLogo} alt="" />
 			<SidebarItem
-				title="Saved Tracks"
+				title="Liked Songs"
 				onClick={onClickLibrary}
-				Icon={LibraryMusicIcon}
+				Icon={MusicIcon}
 			/>
 			<strong className="sidebarTitle">PLAYLISTS</strong>
 			<hr />
