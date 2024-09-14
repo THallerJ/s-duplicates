@@ -2,7 +2,7 @@ import React from "react";
 import "../style/PlaylistPill.css";
 import { GetUserContext } from "../context/AppContext";
 
-const PlaylistPill = ({ key, playlistId, onClick, title }) => {
+const PlaylistPill = ({ playlistId, onClick, title }) => {
 	const { currPlaylist } = GetUserContext();
 
 	function getSelectedClass() {
@@ -13,7 +13,10 @@ const PlaylistPill = ({ key, playlistId, onClick, title }) => {
 	}
 
 	return (
-		<div className={`pill ${getSelectedClass()}`} onClick={onClick}>
+		<div
+			className={`pill ${getSelectedClass()}`}
+			onClick={onClick}
+			key={`${playlistId}-pill`}>
 			{title}
 		</div>
 	);

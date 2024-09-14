@@ -1,8 +1,9 @@
 import axios from "axios";
 
-const getPaginatedResponse = async (url, token, limit, offset) => {
-	const response = await axios
-		.get(url, {
+const getPaginatedResponse = async (url, token, limit, offset, retries) => {
+	let count = 0;
+	try {
+		const resp = await axios.get(url, {
 			params: {
 				offset: offset,
 				limit: limit,
@@ -10,42 +11,44 @@ const getPaginatedResponse = async (url, token, limit, offset) => {
 			headers: {
 				Authorization: "Bearer " + token,
 			},
-		})
-		.then(async (resp) => {
-			if (resp.data.next) {
-				return resp.data.items.concat(
-					await getPaginatedResponse(url, token, limit, offset + limit)
-				);
-			} else {
-				return resp.data.items;
-			}
-		})
-		.catch((err) => {
-			console.log(err);
 		});
 
-	return response;
+		if (resp.data.next) {
+			setTimeout(async () => {
+				return resp.data.items.concat(
+					await getPaginatedResponse(url, token, limit, offset + limit, 0)
+				);
+			}, 1000);
+		} else {
+			return resp.data.items;
+		}
+	} catch (e) {
+		count++;
+		if (count < 3) getPaginatedResponse(url, token, limit, offset, retries + 1);
+		console.log(e);
+	}
 };
 
 export const getPlaylists = async (token, userName) => {
 	const limit = 50;
 	const url = `https://api.spotify.com/v1/users/${userName}/playlists`;
 
-	return await getPaginatedResponse(url, token, limit, 0);
+	const res = await getPaginatedResponse(url, token, limit, 0, 0);
+	return res;
 };
 
 export const getPlaylistTracks = async (token, playlistId) => {
 	const limit = 100;
 	const url = `https://api.spotify.com/v1/playlists/${playlistId}/tracks?`;
 
-	return await getPaginatedResponse(url, token, limit, 0);
+	return await getPaginatedResponse(url, token, limit, 0, 0);
 };
 
 export const getSavedTracks = async (token) => {
 	const limit = 50;
 	const url = `https://api.spotify.com/v1/me/tracks`;
 
-	return await getPaginatedResponse(url, token, limit, 0);
+	return await getPaginatedResponse(url, token, limit, 0, 0);
 };
 
 export const removeSavedTrack = async (token, id) => {

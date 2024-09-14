@@ -40,7 +40,11 @@ const Sidebar = () => {
 						playlistId={playlist.id}
 						onClick={() => onClickPlaylist(playlist)}
 						title={playlist.name}
-						imgSrc={playlist.images[0] ? playlist.images[0].url : null}
+						imgSrc={
+							playlist.images && playlist.images[0]
+								? playlist.images[0].url
+								: null
+						}
 					/>
 				))}
 			</div>

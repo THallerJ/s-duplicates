@@ -15,7 +15,10 @@ const SidebarItem = ({ playlistId, title, imgSrc, Icon, onClick }) => {
 	}
 
 	return (
-		<div className={`sidebarItem ${getSelectedClass()}`} onClick={onClick}>
+		<div
+			className={`sidebarItem ${getSelectedClass()}`}
+			onClick={onClick}
+			key={`${playlistId}-sidebar`}>
 			{Icon && <Icon className="icon" />}
 			{imgSrc ? (
 				<div className="sidebarItemImg">

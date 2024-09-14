@@ -1,5 +1,5 @@
 import { GetUserContext } from "../context/AppContext";
-import PlaylistPill from "./PlaylistPill.js";
+import PlaylistPill from "./PlaylistPill";
 import "../style/PlaylistPills.css";
 
 const PlaylistPills = () => {
