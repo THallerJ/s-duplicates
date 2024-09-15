@@ -1,7 +1,19 @@
 import axios from "axios";
 
+const rateLimit = async (arr, url, token, limit, offset, retries) => {
+	return await new Promise((resolve) => {
+		setTimeout(async () => {
+			resolve(
+				arr.concat(
+					await getPaginatedResponse(url, token, limit, offset + limit, retries)
+				)
+			);
+		}, 500);
+	});
+};
+
 const getPaginatedResponse = async (url, token, limit, offset, retries) => {
-	let count = 0;
+	if (offset > 4000) return;
 	try {
 		const resp = await axios.get(url, {
 			params: {
@@ -14,18 +26,23 @@ const getPaginatedResponse = async (url, token, limit, offset, retries) => {
 		});
 
 		if (resp.data.next) {
-			setTimeout(async () => {
-				return resp.data.items.concat(
-					await getPaginatedResponse(url, token, limit, offset + limit, 0)
-				);
-			}, 1000);
+			const res = await rateLimit(
+				resp.data.items,
+				url,
+				token,
+				limit,
+				offset,
+				retries
+			);
+
+			return res;
 		} else {
 			return resp.data.items;
 		}
 	} catch (e) {
-		count++;
-		if (count < 3) getPaginatedResponse(url, token, limit, offset, retries + 1);
 		console.log(e);
+		if (retries < 3)
+			return getPaginatedResponse(url, token, limit, offset, retries + 1);
 	}
 };
 
@@ -33,8 +50,7 @@ export const getPlaylists = async (token, userName) => {
 	const limit = 50;
 	const url = `https://api.spotify.com/v1/users/${userName}/playlists`;
 
-	const res = await getPaginatedResponse(url, token, limit, 0, 0);
-	return res;
+	return await getPaginatedResponse(url, token, limit, 0, 0);
 };
 
 export const getPlaylistTracks = async (token, playlistId) => {

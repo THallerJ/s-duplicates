@@ -21,32 +21,37 @@ export const getDuplicateTracks = (tracks) => {
 	sortedTracks.forEach((track) => {
 		const currKey = getTrackKey(track);
 		let prevKey = null;
-
 		if (prev) prevKey = getTrackKey(prev);
 
-		if (prev && (currKey.includes(prevKey) || prevKey.includes(currKey))) {
+		if (
+			prev &&
+			currKey &&
+			prevKey &&
+			(currKey.includes(prevKey) || prevKey.includes(currKey))
+		) {
 			if (!flag) tempDups.push(prev);
 			tempDups.push(track);
 			flag = true;
 		} else {
 			prev = track;
-			if (tempDups.length) {
-				dups.push(tempDups);
+			if (tempDups.length > 0) {
+				dups.push([...tempDups]);
 				tempDups = [];
 			}
 			flag = false;
 		}
 	});
 
+	if (tempDups.length > 0) dups.push(tempDups);
 	return dups;
 };
 
 const getTrackTitle = (track) => {
-	return track.track.name;
+	return track?.track?.name;
 };
 
 const getTrackArtist = (track) => {
-	return track.track.artists[0].name;
+	return track?.track?.artists[0]?.name;
 };
 
 const getTrackKey = (track) => {

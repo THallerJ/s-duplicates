@@ -61,7 +61,8 @@ const Body = () => {
 				<div className="center">
 					<h2 className="instructionText">
 						Find duplicates in "
-						{currPlaylist ? currPlaylist.name : "Liked Songs"}"
+						{currPlaylist ? currPlaylist.name : "Liked Songs"}" (Up to 4000
+						songs)
 					</h2>
 					<button className="button" onClick={onClick}>
 						Find Duplicates
