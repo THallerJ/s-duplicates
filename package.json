@@ -1,44 +1,44 @@
 {
-  "name": "spotify-duplicates",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "axios": "^0.21.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.1",
-    "react-modal": "^3.16.1",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.2"
-  },
-  "scripts": {
-    "start": "vite",
-    "build": "vite build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "dev": "vite"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "@svgr/core": "^8.1.0",
-    "@svgr/plugin-jsx": "^8.1.0",
-    "@vitejs/plugin-react": "^4.3.1",
-    "vite": "^5.2.13"
-  }
+	"name": "spotify-duplicates",
+	"version": "0.1.0",
+	"private": true,
+	"dependencies": {
+		"axios": "^0.21.1",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.1",
+		"react-modal": "^3.16.1",
+		"react-router-dom": "^5.2.0"
+	},
+	"scripts": {
+		"start": "vite",
+		"build": "vite build",
+		"test": "react-scripts test",
+		"eject": "react-scripts eject",
+		"dev": "vite",
+		"preview": "vite preview"
+	},
+	"eslintConfig": {
+		"extends": [
+			"react-app",
+			"react-app/jest"
+		]
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	},
+	"devDependencies": {
+		"@svgr/core": "^8.1.0",
+		"@svgr/plugin-jsx": "^8.1.0",
+		"@vitejs/plugin-react": "^4.3.1",
+		"vite": "^5.2.13"
+	}
 }
